@@ -49,79 +49,70 @@ format:
 
 ---
 
-<!----
+> En database er et organiseret system til at gemme, hente og administrere data på en måde der gør det hurtigt, sikkert og påligteligt at arbejde med information.
 
-"En database er et organiseret system til at gemme, hente og administrere data på en måde der gør det hurtigt, sikkert og påligteligt at arbejde med information."
+---
 
-Tænk på en database som et ekstremt velorganiseret bibliotek:
-•	Tabeller er som forskellige sektioner (fiktion, non-fiktion, tidsskrifter)
-•	Rækker er individuelle bøger eller magasiner
-•	Kolonner er informationsfelter (titel, forfatter, ISBN)
-•	Indekser er som kartotek der gør det hurtigt at finde en specifik bog
-•	Relationer forbinder information på tværs (denne bog er skrevet af denne forfatter)
+Tænk på det som et digitalt arkivskab, hvor information er struktureret så den nemt kan findes og bruges.
 
-Hvad er en database?
-En database er et organiseret system til at gemme, hente og administrere data. Tænk på det som et digitalt arkivskab, hvor information er struktureret så den nemt kan findes og bruges.
-Hvorfor bruger vi databaser?
-•	Persistens: Data gemmes permanent
-•	Organisation: Data struktureres logisk
-•	Hastighed: Hurtige queries
+1.	Tabeller er som forskellige sektioner (fiktion, non-fiktion, tidsskrifter)
+2.	Rækker er individuelle bøger eller magasiner
+3.	Kolonner er informationsfelter (titel, forfatter, ISBN)
+4.	Indekser er som kartotek der gør det hurtigt at finde en specifik bog
+5.	Relationer forbinder information på tværs (denne bog er skrevet af denne forfatter)
 
----->
+## Hvorfor bruger vi databaser?
+
+*	**Persistens**: Data gemmes permanent
+*	**Organisation**: Data struktureres logisk
+*	**Hastighed**: Hurtige queries
 
 ## Hvad løser databaser?
 
-<!----
+**Med afsæt i mit skolesystem har jeg et centralt problem ift. min beslutning om at lagre som CSV:**
 
-Problemer med den nuværende CSV-tilgang
-Din nuværende løsning har flere begrænsninger:
+1. **Ingen relationer**: Klasser og elever er ikke forbundet i CSV-filen
+2. **Data redundans**: Hvis en lærer underviser flere klasser, gentages lærerdata
+3. **Svær søgning**: Skal læse hele filen hver gang
+4. **Ingen samtidighed**: To brugere kan ikke arbejde samtidigt
+5. **Ingen integritet**: Intet sikrer at en elev ikke tilføjes til en ikke-eksisterende klasse
 
-Ingen relationer: Klasser og elever er ikke forbundet i CSV-filen
-Data redundans: Hvis en lærer underviser flere klasser, gentages lærerdata
-Svær søgning: Skal læse hele filen hver gang
-Ingen samtidighed: To brugere kan ikke arbejde samtidigt
-Ingen integritet: Intet sikrer at en elev ikke tilføjes til en ikke-eksisterende klasse
+---
 
------>
+***En database løser alle disse problemer gennem:***
 
-## Databaser er fundamentale i moderne softwareudvikling 
+*	**Strukturerede relationer**: Tabeller kan forbindes gennem primærnøgler og fremmednøgler
+*	**Indekser**: Gør søgning eksponentielt hurtigere (sekunder bliver til millisekunder)
+*	**Transaktioner**: Sikrer at enten alle ændringer gemmes, eller ingen gør
+*	**Constraints**: Validerer data automatisk før det gemmes
+*	**Samtidig adgang**: Tusindvis af brugere kan arbejde samtidigt
 
-<!---
-
-En database løser alle disse problemer gennem:
-•	Strukturerede relationer: Tabeller kan forbindes gennem primærnøgler og fremmednøgler
-•	Indekser: Gør søgning eksponentielt hurtigere (sekunder → millisekunder)
-•	Transaktioner: Sikrer at enten alle ændringer gemmes, eller ingen gør
-•	Constraints: Validerer data automatisk før det gemmes
-•	Samtidig adgang: Tusindvis af brugere kan arbejde samtidigt
-
----->
+*Databaser er derfor fundamentale i moderne softwareudvikling*
 
 ## Eksempler på databaser 
 
-<!----
-Type	Karakteristik	Eksempler
-Relationel (SQL)	Data i tabeller med relationer. Streng struktur.	PostgreSQL, MySQL, SQLite, Oracle
-Dokument (NoSQL)	JSON-lignende dokumenter. Fleksibel struktur.	MongoDB, CouchDB
-Nøgle-værdi	Simpel nøgle → værdi mapping. Ekstrem hastighed.	Redis, Memcached
-Graf	Fokus på relationer mellem data. Netværk.	Neo4j, Amazon Neptune
+| Type              | Karakteristik                                 | Eksempler                     |
+|-------------------|-----------------------------------------------|-------------------------------|
+| Relationel (SQL)  | Data i tabeller med relationer. Streng struktur. | PostgreSQL, MySQL, SQLite, Oracle |
+| Dokument (NoSQL)  | JSON-lignende dokumenter. Fleksibel struktur. | MongoDB, CouchDB              |
+| Nøgle-værdi       | Simpel nøgle → værdi mapping. Ekstrem hastighed. | Redis, Memcached              |
+| Graf              | Fokus på relationer mellem data. Netværk.     | Neo4j, Amazon Neptune         |
 
-fokuserer vi på relationelle databaser (SQL), da de er mest udbredte og fundamentale at forstå.
-
------->
 
 ## SQL?!?
 
-<!---
-SQL (Structured Query Language) er det standardiserede sprog vi bruger til at kommunikere med relationelle databaser. Det er udtalt 'S-Q-L' eller 'sequel'.
+SQL (**Structured Query Language**) er det standardiserede sprog vi bruger til at kommunikere med relationelle databaser. 
 
-SQL (Structured Query Language) er sproget vi bruger til at kommunikere med databaser.
+> SQL er deklarativt, ikke imperativt.
 
-SQL er deklarativt, ikke imperativt:
-Imperativt (Python): Du fortæller computeren hvordan den skal gøre noget
+---
+
+### Imperativt: Vi fortæller computeren hvordan den skal gøre noget
 
 ```{python}
-# Du specificerer hver trin
+#| eval: false
+#| echo: true
+# Vi specificerer hvert trin i processen
 elever = []
 for person in personer:
     if person.skole == 'Nordskolen':
@@ -129,87 +120,143 @@ for person in personer:
             elever.append(person)
 ```
 
+---
 
-Deklarativt (SQL): Du fortæller computeren hvad du vil have
--- Du specificerer resultatet
+### Deklarativt: Vi fortæller computeren hvad du vil have
 
 ```{SQL}
 SELECT * FROM elever
 WHERE skole = 'Nordskolen' AND klassetrin = '7';
 ```
 
-Databasen finder selv den mest effektive måde at hente dataen. Dette er kraftfuldt fordi databasen kender sine indekser og datastruktur bedre end du gør.
+Databasen finder selv den mest effektive måde at hente dataen. 
 
+Effektivt fordi databasen kender sine indekser og datastruktur bedre end du gør.
 
-SQL's Fem Hovedkategorier
+## SQL's Fem Hovedkategorier
 
-Kategori	Formål	Kommandoer
-DDL
-(Data Definition)	Definér struktur: tabeller, kolonner, constraints	CREATE, ALTER, DROP, TRUNCATE
-DML
-(Data Manipulation)	Manipulér data: tilføj, ændr, slet	INSERT, UPDATE, DELETE
-DQL
-(Data Query)	Hent data fra databasen	SELECT
-DCL
-(Data Control)	Kontrollér adgang og rettigheder	GRANT, REVOKE
-TCL
-(Transaction Control)	Styr transaktioner	COMMIT, ROLLBACK, SAVEPOINT
+| Kategori | Formål | Kommandoer |
+|-----------|---------|-------------|
+| DDL (Data Definition) | Definér struktur: tabeller, kolonner, constraints | CREATE, ALTER, DROP, TRUNCATE |
+| DML (Data Manipulation) | Manipulér data: tilføj, ændr, slet | INSERT, UPDATE, DELETE |
+| DQL (Data Query) | Hent data fra databasen | SELECT |
+| DCL (Data Control) | Kontrollér adgang og rettigheder | GRANT, REVOKE |
+| TCL (Transaction Control) | Styr transaktioner | COMMIT, ROLLBACK, SAVEPOINT |
 
----->
 
 ## SQL øvelse 
 
+[Øvelse](https://www.sqlitetutorial.net/tryit/query/sqlite-select/#invoices)
+
+---
+
+1. Vis alle kolonner og rækker fra tabellen invoices: `SELECT * FROM invoices`
+
+2. Vis kun kolonnerne BillingCountry, CustomerId og Total fra invoices-tabellen.
+
 <!----
+SELECT AlbumId, ArtistId FROM Albums
+---->
 
-https://www.sqlitetutorial.net/tryit/query/sqlite-select/#albums
+3. Hvad er den samlede omsætning pr. land?
 
+```{sql}
+SELECT BillingCountry, SUM(Total) AS SamletOmsaetning
+FROM invoices
+GROUP BY BillingCountry
+ORDER BY SamletOmsaetning DESC;
+```
 
+4. Hvor mange fakturaer blev udstedt i 2010?
 
+```{sql}
+SELECT COUNT(*) AS Antal2010
+FROM invoices
+WHERE strftime('%Y', InvoiceDate) = '2010';  -- OBS: SQLite-format
+```
+
+5. **Hvilken kunde (CustomerId) har brugt flest penge i alt?**
+
+<!---
+SELECT CustomerId, SUM(Total) AS SamletForbrug
+FROM invoices
+GROUP BY CustomerId
+ORDER BY SamletForbrug DESC
+LIMIT 1;
+---->
+
+6. Hvilke lande har gennemsnitlige fakturabeløb over 10 USD?
+
+<!----
+SELECT BillingCountry, AVG(Total) AS Gennemsnit
+FROM invoices
+GROUP BY BillingCountry
+HAVING AVG(Total) > 10
+ORDER BY Gennemsnit DESC;
 ----->
 
 ## Database Design
 
-<!---
+1. Identificer entiteter
+2. Definer attributter
+3. Identificer relationer
+4. Implementer schema
 
-Vi starter med at identificere entiteter (ting der eksisterer) og deres attributter (egenskaber).
+---
 
-Trin 1: Identificér Entiteter
-I dit skolesystem har vi disse hovedentiteter:
-•	Personer (basis for elever og lærere)
-•	Elever (en specialisering af person)
-•	Lærere (en anden specialisering)
-•	Klasser (samling af elever)
-•	Fag (emner lærere underviser i)
-Trin 2: Definér Attributter
-Personer:
-  - id (unik identifikator)
-  - navn
-  - alder
-  - køn
-  - type (Elev eller Lærer)
+#### Trin 1: Identificer entiteter
 
-Elever (arver fra Personer):
-  - skole
-  - klassetrin
+*	Personer (basis for elever og lærere)
+*	Elever (en specialisering af person)
+*	Lærere (en anden specialisering)
+*	Klasser (samling af elever)
+*	Fag (emner lærere underviser i)
 
-Lærere (arver fra Personer):
-  - email
-  - telefon
+---
 
-Klasser:
-  - id
-  - klassenavn
-  - lokale
-  - klasselærer (reference til lærer)
-Trin 3: Identificér Relationer
-Relationer beskriver hvordan entiteter er forbundet:
-•	En-til-mange: Én klasse har mange elever
-○	Én lærer kan være klasselærer for mange klasser
-•	Mange-til-mange: En lærer underviser i mange fag, et fag undervises af mange lærere
-○	En elev kan være i flere klasser (måske for forskellige fag)
-Trin 4: Implementér Schema
-Nu oversætter vi designet til SQL DDL (Data Definition Language):
--- Tabel 1: Base personer tabel
+#### Trin 2: Definer attributter
+
+* **Personer**:
+    - id (unik identifikator)
+    - navn
+    - alder
+    - køn
+    - type (Elev eller Lærer)
+
+* **Elever** (arver fra Personer):
+    - skole
+    - klassetrin
+
+* **Lærere** (arver fra Personer):
+    - email
+    - telefon
+
+* **Klasser**:
+    - id
+    - klassenavn
+    - lokale
+    - klasselærer (reference til lærer)
+
+---
+
+#### Trin 3: Identificer relationer
+
+>**Relationer** beskriver hvordan entiteter er forbundet:
+
+*	**En-til-mange**: Én klasse har mange elever
+    *	Én lærer kan være klasselærer for mange klasser
+*	**Mange-til-mange**: En lærer underviser i mange fag, et fag undervises af mange lærere
+    *	En elev kan være i flere klasser (måske for forskellige fag)
+
+---
+
+#### Trin 4: Implementer schema
+
+*Nu oversætter vi designet til SQL DDL (Data Definition Language):*
+
+**Tabel 1: Base personer tabel**
+
+```{sql}
 CREATE TABLE personer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     navn TEXT NOT NULL,
@@ -217,8 +264,17 @@ CREATE TABLE personer (
     køn TEXT NOT NULL,
     type TEXT NOT NULL CHECK(type IN ('Elev', 'Lærer'))
 );
+```
 
--- Tabel 2: Elev-specifik information
+---
+
+#### Trin 4: Implementer schema
+
+*Nu oversætter vi designet til SQL DDL (Data Definition Language):*
+
+**Tabel 2: Elev-specifik information**
+
+```{sql}
 CREATE TABLE elever (
     person_id INTEGER PRIMARY KEY,
     skole TEXT NOT NULL,
@@ -226,8 +282,21 @@ CREATE TABLE elever (
     FOREIGN KEY (person_id) REFERENCES personer(id)
         ON DELETE CASCADE
 );
+```
 
--- Tabel 3: Lærer-specifik information
+* `FOREIGN KEY (person_id) REFERENCES personer(id)` betyder, at hver elev skal høre til en eksisterende person i tabellen personer.
+
+* `ON DELETE CASCADE` gør, at hvis en person slettes fra personer, slettes den tilknyttede elev automatisk i elever.
+
+---
+
+#### Trin 4: Implementer schema
+
+*Nu oversætter vi designet til SQL DDL (Data Definition Language):*
+
+**Tabel 3: Lærer-specifik information**
+
+```{sql}
 CREATE TABLE lærere (
     person_id INTEGER PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
@@ -235,46 +304,56 @@ CREATE TABLE lærere (
     FOREIGN KEY (person_id) REFERENCES personer(id)
         ON DELETE CASCADE
 );
- 
+```
 
+* `FOREIGN KEY (person_id) REFERENCES personer(id)` betyder, at hver lærer skal høre til en eksisterende person i tabellen personer.
 
----->
+* `ON DELETE CASCADE` gør, at hvis en person slettes fra personer, slettes den tilknyttede lærer automatisk i lærere.
 
 ## API'er 
 
-<!----
+API (**Application Programming Interface**) er en "kontrakt" der definerer hvordan to systemer kommunikerer med hinanden.
 
-"Et API (Application Programming Interface) er en kontrakt der definerer hvordan to systemer kommunikerer med hinanden."
+Analogi: 
 
-Tænk på et API som en restaurant:
-•	Klienten (dig) ved ikke hvordan køkkenet fungerer
-•	Menuen (API dokumentation) viser hvad du kan bestille
-•	Tjeneren (API) tager din ordre og bringer maden tilbage
-•	Køkkenet (database/backend) laver maden uden du ser det
+*	Klienten (dig) ved ikke hvordan køkkenet fungerer
+*	Menuen (**API dokumentation**) viser hvad du kan bestille
+*	Tjeneren (**API**) tager din ordre og bringer maden tilbage
+*	Køkkenet (**database/backend**) laver maden uden du ser det
 
-REST (Representational State Transfer) er den mest udbredte arkitekturstil for web-API'er. Den bygger på HTTP-protokollen.
+---
 
-REST Principper:
-1.	Ressource-baseret: Alt er en ressource (elever, klasser, lærere)
-2.	HTTP metoder: Brug GET, POST, PUT, DELETE til forskellige handlinger
-3.	Stateless: Hver request er uafhængig
-4.	Standard formater: Typisk JSON
+#### REST (Representational State Transfer) 
 
-HTTP Metoder (Verber)
+* Den mest udbredte arkitekturstil for web-API'er. 
+* Den bygger på HTTP-protokollen.
 
-Metode	Formål	SQL Ækvivalent	Idempotent
-GET	Hent data	SELECT	✓
-POST	Opret ny ressource	INSERT	✗
-PUT	Erstat hele ressourcen	UPDATE (alle felter)	✓
-PATCH	Opdater dele af ressourcen	UPDATE (specifikke felter)	✓
-DELETE	Slet ressource	DELETE	✓
+*REST Principper:*
 
+1. **Ressource-baseret**: Alt er en ressource (elever, klasser, lærere)
+2. **HTTP metoder**: Brug GET, POST, PUT, DELETE til forskellige handlinger
+3. **Stateless**: Hver request er uafhængig
+4. **Standard formater**: Typisk JSON
 
+## HTTP Metoder (Verber)
 
+| Metode | Formål | SQL Ækvivalent | Idempotent |
+|---------|---------|----------------|-------------|
+| GET     | Hent data | SELECT | ✓ |
+| POST    | Opret ny ressource | INSERT | ✗ |
+| PUT     | Erstat hele ressourcen | UPDATE (alle felter) | ✓ |
+| PATCH   | Opdater dele af ressourcen | UPDATE (specifikke felter) | ✓ |
+| DELETE  | Slet ressource | DELETE | ✓ |
 
-API Design for Skolesystemet
-Lad os designe et komplet API til dit skolesystem. Vi følger REST konventioner:
-Endpoint Struktur:
+* En operation er **idempotent**, hvis det giver samme resultat, uanset hvor mange gange du udfører den.
+    - Klienter (eller netværk) kan gentage anmodninger uden utilsigtede bivirkninger.
+    - Hvis en forespørgsel fejler, kan den sendes igen trygt, hvis den er idempotent.
+
+## API design for vores skolesystemet
+
+#### Endpoint Struktur:
+
+```
 Elever:
   GET    /api/elever              # Hent alle elever
   GET    /api/elever?skole=Nord   # Filtrer elever
@@ -291,15 +370,18 @@ Klasser:
   POST   /api/klasser             # Opret ny klasse
   POST   /api/klasser/7A/elever   # Tilføj elev til klasse
   DELETE /api/klasser/7A/elever/42 # Fjern elev fra klasse
-Eksempel: Hent alle elever
-Request:
-GET /api/elever HTTP/1.1
-Host: skolesystem.dk
-Accept: application/json
-Response:
-HTTP/1.1 200 OK
-Content-Type: application/json
+```
 
+---
+
+- Eksempel: *Hent alle elever*
+- Request: `GET /api/elever HTTP/1.1`
+- Host: `skolesystem.dk`
+- Accept: `application/json`
+- Response: `HTTP/1.1 200 OK`
+- Content-Type: `application/json`
+
+```
 {
   "elever": [
     {
@@ -319,12 +401,16 @@ Content-Type: application/json
   ],
   "total": 2
 }
-Eksempel: Opret ny elev
-Request:
-POST /api/elever HTTP/1.1
-Host: skolesystem.dk
-Content-Type: application/json
+```
 
+---
+
+- Eksempel: *Opret ny elev*
+- Request: `POST /api/elever HTTP/1.1`
+- Host: `skolesystem.dk`
+- Content-Type: `application/json`
+
+```
 {
   "navn": "Anna Larsen",
   "alder": 14,
@@ -346,35 +432,34 @@ Content-Type: application/json
   "klassetrin": "7",
   "created_at": "2025-10-16T14:30:00Z"
 }
+```
 
+## HTTP Status Koder
 
-HTTP Status Koder
+| Kode | Betydning | Hvornår at bruge |
+|------|-------------|------------------|
+| 200 | OK | Succesfuld GET/PUT/PATCH request |
+| 201 | Created | POST request der skabte en ny ressource |
+| 204 | No Content | Succesfuld DELETE request (ingen body at returnere) |
+| 400 | Bad Request | Invalid input (fx alder er negativ) |
+| 401 | Unauthorized | Mangler authentication (ikke logget ind) |
+| 403 | Forbidden | Authenticated men ikke autoriseret (fx elev prøver at slette lærer) |
+| 404 | Not Found | Ressource findes ikke (GET /api/elever/999) |
+| 500 | Internal Server Error | Uventet fejl på serveren (bug i kode, database nede) |
 
-Kode	Betydning	Hvornår at bruge
-200	OK	Succesfuld GET/PUT/PATCH request
-201	Created	POST request der skabte en ny ressource
-204	No Content	Succesfuld DELETE request (ingen body at returnere)
-400	Bad Request	Invalid input (fx alder er negativ)
-401	Unauthorized	Mangler authentication (ikke logget ind)
-403	Forbidden	Authenticated men ikke autoriseret (fx elev prøver at slette lærer)
-404	Not Found	Ressource findes ikke (GET /api/elever/999)
-500	Internal Server Error	Uventet fejl på serveren (bug i kode, database nede)
+## Det komplette system 
 
-
-Det Komplette System
-4.1 Arkitektur: Alle Lag Sammen
-Nu har vi alle byggeklodser. Lad os se hvordan de arbejder sammen i et komplet system:
+```
 ┌─────────────────────────────────────────────┐
 │           KLIENT (Frontend)                 │
-│  - Webbrowser / Mobile app / CLI           │
+│  - Webbrowser / Mobile app / CLI            │
 └─────────────────┬───────────────────────────┘
                   │ HTTP Requests (JSON)
                   ↓
 ┌─────────────────────────────────────────────┐
-│          API LAG (FastAPI)                  │
+│          API LAG                            │
 │  - Modtag requests                          │
-│  - Validér input (Pydantic)                 │
-│  - Business logic                           │
+│  - Valider input                            │
 │  - Formater response                        │
 └─────────────────┬───────────────────────────┘
                   │ SQL Queries
@@ -386,75 +471,13 @@ Nu har vi alle byggeklodser. Lad os se hvordan de arbejder sammen i et komplet s
 │  - Optimer queries (indekser)               │
 │  - Sikr data integritet                     │
 └─────────────────────────────────────────────┘
-4.2 Eksempel: Komplet Dataflow
-Lad os følge en request gennem hele systemet:
-Scenarie: En sekretær vil oprette en ny elev
-Trin 1: Klienten sender request
-POST /api/elever HTTP/1.1
-Content-Type: application/json
-
-{
-  "navn": "Sofia Nielsen",
-  "alder": 13,
-  "køn": "Kvinde",
-  "skole": "Nordskolen",
-  "klassetrin": "7"
-}
-Trin 2: FastAPI modtager og validerer
-# Pydantic parser JSON og validerer:
-# ✓ navn er ikke tom
-# ✓ alder er mellem 5 og 20
-# ✓ klassetrin er gyldig (0-10)
-
-# Hvis invalid:
-# → 400 Bad Request med detaljer om fejl
-Trin 3: API kalder database
-# crud.opret_elev() kører disse SQL queries:
-
-BEGIN TRANSACTION;
-
-INSERT INTO personer (navn, alder, køn, type)
-VALUES ('Sofia Nielsen', 13, 'Kvinde', 'Elev');
--- Returnerer ID: 123
-
-INSERT INTO elever (person_id, skole, klassetrin)
-VALUES (123, 'Nordskolen', '7');
-
-COMMIT;
-Trin 4: Database validerer og gemmer
-# Database checker constraints:
-# ✓ alder >= 0 (CHECK constraint)
-# ✓ person_id 123 exists (FOREIGN KEY)
-# ✓ klassetrin IN ('0'..'10') (CHECK constraint)
-
-# Hvis OK: Data gemmes permanent
-# Hvis fejl: ROLLBACK, ingen data gemmes
-Trin 5: API henter den nye elev
-SELECT p.id, p.navn, p.alder, p.køn, e.skole, e.klassetrin
-FROM personer p
-JOIN elever e ON p.id = e.person_id
-WHERE p.id = 123;
-Trin 6: API returnerer response
-HTTP/1.1 201 Created
-Location: /api/elever/123
-Content-Type: application/json
-
-{
-  "id": 123,
-  "navn": "Sofia Nielsen",
-  "alder": 13,
-  "køn": "Kvinde",
-  "skole": "Nordskolen",
-  "klassetrin": "7"
-}
+```
 
 Bemærk: Hvis noget går galt i nogen af disse trin, rulles hele operationen tilbage. Enten gemmes alt, eller intet gemmes.
 
------> 
+## Database øvelse 
 
-
-
-
+> Lav et *konceptuelt* design af en database relevant for jeres system. 
 
 
 
