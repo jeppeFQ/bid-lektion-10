@@ -1,0 +1,27 @@
+---
+title: "Barometer"
+subtitle: "Sammenlign din arbejdsplads"
+---
+
+Barometeret placerer en arbejdsplads blandt de arbejdspladser, der ligner den mest:
+samme branche, samme størrelse og samme sektor. 
+
+<!-- ØVELSE 3 · Forklar med jeres egne ord, hvordan man læser figuren nedenfor:
+     det lyse bånd, det mørke bånd, stregen og den røde trekant. -->
+
+Her er et eksempel: en offentlig skole i Nordjylland med 120 ansatte.
+
+```{python}
+from IPython.display import Markdown
+
+try:
+    from app.barometer import Arbejdsplads, Referencetal
+    from app.barometer.figur import tegn
+
+    skolen = Arbejdsplads(120, {"kvinder": 84, "seniorer": 26, "indvandrere": 9},
+                          "Undervisning", "Offentlig", "Nordjylland")
+    figur = tegn(skolen, Referencetal())
+except Exception:
+    figur = None
+    display(Markdown("*Figuren kommer, når klassen `Arbejdsplads` er bygget færdig.*"))
+```

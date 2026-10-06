@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _site
+  # Kun de her filer bliver til sider. Uden listen ville Quarto også prøve at
+  # lave sider af notebooks, README.md og alt det andet i mappen.
+  render:
+    - index.qmd
+    - barometer.qmd
+    - opslag.qmd
+    - om.qmd
+
+website:
+  title: "Diversitetsbarometeret"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Forside
+      - href: barometer.qmd
+        text: Barometer
+      - href: opslag.qmd
+        text: Opslag
+      - href: om.qmd
+        text: Om
+  page-footer:
+    center: "Tallene er syntetiske · Udvikling af IT"
+
+format:
+  html:
+    theme: cosmo
+    lang: da
+
+execute:
+  echo: false
+  warning: false

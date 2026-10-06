@@ -1,6 +1,6 @@
 ---
-title: "Lektion 8"
-subtitle: "SQL og databaser"
+title: "Lektion 9"
+subtitle: "Plain text, compilere og markup"
 author: "Jeppe Fjeldgaard Qvist"
 date: today
 engine: knitr
@@ -15,11 +15,7 @@ format:
     smaller: true
     scrollable: true
     theme: default
-pyodide:
-  packages:
-    - pandas
 ---
-
 
 <!--- 
 mkdir -p .qmd-pause && mv *.qmd .qmd-pause/ && \
@@ -31,795 +27,507 @@ mkdir -p .qmd-pause && mv *.qmd .qmd-pause/ && \
 
 ## Dagens program
 
-```{pyodide}
-#| autorun: true
-#| include: false
-import io
-import sqlite3
-import pandas as pd
+1. **Plain text**, det enkleste format, der findes, og hvorfor det holder
 
-UDSNIT = {
- "brancher": "branche_id,branche\n0,Alle\n1,Undervisning\n2,Sundhed og socialvæsen\n3,Handel\n4,Industri\n5,Bygge og anlæg\n6,Transport\n7,Offentlig administration\n8,Information og kommunikation",
- "regioner": "region_id,region\n0,Alle\n1,Hovedstaden\n2,Sjælland\n3,Syddanmark\n4,Midtjylland\n5,Nordjylland",
- "dimensioner": "dimension_id,dimension,navn\n1,kvinder,Kvinder\n2,seniorer,Seniorer\n3,indvandrere,Indvandrerbaggrund",
- "grupper": "gruppe_id,branche_id,region_id,aar,antal_arbejdssteder\n1,0,0,2012,2228\n2,0,1,2012,539\n3,0,2,2012,1900\n4,0,3,2012,535\n5,0,4,2012,386\n6,0,5,2012,1383\n7,1,0,2012,319\n21,2,0,2012,306\n33,3,0,2012,1236\n47,4,0,2012,107\n59,5,0,2012,671\n70,6,0,2012,2376\n83,7,0,2012,2070\n96,8,0,2012,1609\n107,0,0,2022,913\n108,0,1,2022,1750\n109,0,2,2022,1873\n110,0,3,2022,2204\n111,0,4,2022,659\n112,0,5,2022,1806\n113,1,0,2022,2322\n127,2,0,2022,1129\n142,3,0,2022,1217\n157,4,0,2022,1394\n171,5,0,2022,347\n185,6,0,2022,1544\n198,7,0,2022,965\n211,8,0,2022,600",
- "fordelinger": "gruppe_id,dimension_id,p25,p50,p75\n1,1,0.331,0.412,0.493\n1,2,0.082,0.163,0.244\n1,3,0.046,0.127,0.208\n2,1,0.337,0.418,0.499\n2,2,0.106,0.187,0.268\n2,3,0.076,0.157,0.237\n3,1,0.324,0.405,0.486\n3,2,0.107,0.188,0.269\n3,3,0.026,0.107,0.188\n4,1,0.336,0.416,0.497\n4,2,0.109,0.19,0.271\n4,3,0.024,0.105,0.186\n5,1,0.319,0.4,0.48\n5,2,0.104,0.185,0.266\n5,3,0.029,0.109,0.19\n6,1,0.326,0.407,0.488\n6,2,0.09,0.171,0.252\n6,3,0.0,0.064,0.145\n7,1,0.571,0.652,0.732\n7,2,0.152,0.233,0.314\n7,3,0.0,0.055,0.136\n21,1,0.691,0.772,0.853\n21,2,0.147,0.228,0.309\n21,3,0.003,0.084,0.165\n33,1,0.328,0.409,0.49\n33,2,0.004,0.084,0.165\n33,3,0.008,0.088,0.169\n47,1,0.185,0.266,0.347\n47,2,0.111,0.192,0.273\n47,3,0.008,0.089,0.17\n59,1,0.0,0.067,0.148\n59,2,0.094,0.175,0.256\n59,3,0.056,0.136,0.217\n70,1,0.156,0.237,0.318\n70,2,0.145,0.226,0.306\n70,3,0.108,0.189,0.27\n83,1,0.455,0.536,0.617\n83,2,0.177,0.258,0.339\n83,3,0.0,0.045,0.126\n96,1,0.221,0.302,0.382\n96,2,0.053,0.133,0.214\n96,3,0.043,0.124,0.205\n107,1,0.371,0.452,0.532\n107,2,0.134,0.215,0.296\n107,3,0.052,0.133,0.214\n108,1,0.327,0.408,0.489\n108,2,0.123,0.203,0.284\n108,3,0.078,0.159,0.239\n109,1,0.36,0.441,0.522\n109,2,0.146,0.227,0.308\n109,3,0.037,0.118,0.199\n110,1,0.331,0.412,0.493\n110,2,0.138,0.219,0.3\n110,3,0.041,0.122,0.203\n111,1,0.354,0.435,0.515\n111,2,0.137,0.218,0.299\n111,3,0.043,0.124,0.204\n112,1,0.341,0.422,0.503\n112,2,0.121,0.201,0.282\n112,3,0.015,0.096,0.177\n113,1,0.575,0.656,0.737\n113,2,0.169,0.25,0.331\n113,3,0.0,0.068,0.148\n127,1,0.709,0.79,0.871\n127,2,0.157,0.238,0.319\n127,3,0.04,0.12,0.201\n142,1,0.373,0.454,0.535\n142,2,0.056,0.137,0.218\n142,3,0.045,0.126,0.207\n157,1,0.214,0.295,0.376\n157,2,0.143,0.224,0.305\n157,3,0.084,0.164,0.245\n171,1,0.027,0.108,0.189\n171,2,0.115,0.196,0.277\n171,3,0.086,0.167,0.248\n185,1,0.162,0.243,0.324\n185,2,0.179,0.26,0.341\n185,3,0.086,0.167,0.248\n198,1,0.514,0.594,0.675\n198,2,0.227,0.307,0.388\n198,3,0.0,0.057,0.138\n211,1,0.228,0.309,0.39\n211,2,0.084,0.165,0.246\n211,3,0.044,0.125,0.206"
-}
+2. **Compilere**, fra det, mennesker skriver, til det, maskiner gør
 
-db = sqlite3.connect(":memory:")
-for navn, tekst in UDSNIT.items():
-    pd.read_csv(io.StringIO(tekst)).to_sql(navn, db, index=False)
+3. **Markup** 
 
-def sql(forespoergsel):
-    """Kør en SQL-forespørgsel på barometerets database, og giv svaret som en tabel."""
-    return pd.read_sql_query(forespoergsel, db)
-```
+4. **Fra .qmd til hjemmeside**
 
-1. **Databaser**. hvad er det, og hvorfor bruger vi dem?
-
-2. **I har allerede en**: barometerets `data/` er næsten en database
-
-3. **SQL**
-
-4. **Database-design** 
-
-5. **API'er** 
-
-6. **Workshop** 
+5. **Workshop**: barometerets hjemmeside
 
 ## Det, I allerede ved
 
 | Fra | Det, vi bruger i dag |
 |---|---|
-| Lektion 4 | Programmeringsparadigmer: Deklarativ programmering |
-| Lektion 5 og 6 | Referencetallene ligger i syv tabeller, der hænger sammen med id'er. I satte dem sammen med `merge` |
-| Lektion 6 | Ordbøger (kapitel 10) og filer (kapitel 13) |
+| Lektion 1 | Alt er tal. Også tekst |
+| Lektion 3 | Git kan vise, præcis hvad der er ændret i tekstfiler |
+| Lektion 4 | Kernighans lag: hvert lag kender kun grænsefladen til laget under |
+| Lektion 5 og 6 | `README.md`, `DESIGN.md` og `om.md`, I har skrevet Markdown hele semestret |
+| Lektion 8 | SQL og JSON er også bare tekst |
 
-# Databaser
+# Plain text
 
-## Databaser
+## Hvad er plain text?
 
-> I har hørt ordet før. Hvad er det?
-
-<span class="timer" data-time="180"></span>
-
-## En definition
-
-> En database er et organiseret system til at gemme, hente og administrere data, så det er hurtigt, sikkert og pålideligt at arbejde med.
-
-<br>
-
-Tænk på det som et digitalt arkivskab, hvor alt er ordnet, så det let kan findes:
+Tekst og intet andet. Ingen skjult formatering, ingen indlejrede billeder, intet program, der skal til for at åbne den.
 
 ::: {.incremental}
 
-1. **Tabeller** er skabets skuffer med én til hver slags ting
-2. **Rækker** er de enkelte sager i skuffen
-3. **Kolonner** er felterne på hver sag: titel, dato, navn
-4. **Indekser** er kartoteket, der gør det hurtigt at finde én bestemt sag
-5. **Relationer** forbinder sagerne på tværs af skufferne
+* En `.py`-fil er plain text. En `.csv` er plain text. En `.md` er plain text.
+
+* En `.docx` er **ikke**. Heller ikke en `.pages` eller en `.xlsx`.
+
+* Plain text kan åbnes af ethvert program på enhver computer ... i dag og om 30 år.
 
 :::
 
-## Hvorfor databaser?
+## Tekst er tal
 
-::: {.incremental}
-
-* **Persistens**: data bliver gemt, også når programmet lukker
-
-* **Orden**: data har en fast struktur, som alle kan regne med
-
-* **Hastighed**: man kan finde det, man leder efter, uden at læse det hele
-
-* **Sikkerhed**: databasen kan nægte at gemme noget, der ikke giver mening
-
-:::
-
-# I har allerede en
-
-## Barometerets data er næsten en database
-
-Mappen `data/` er syv tabeller. De små tabeller har et id og et navn; de store peger på dem med id'er.
-
-```{mermaid}
-erDiagram
-    grupper ||--o{ fordelinger : har
-    brancher ||--o{ grupper : "branche_id"
-    regioner ||--o{ grupper : "region_id"
-    sektorer ||--o{ grupper : "sektor_id"
-    stoerrelser ||--o{ grupper : "stoerrelse_id"
-    dimensioner ||--o{ fordelinger : "dimension_id"
-```
-
-::: {.fragment}
-Og I har allerede lavet det vigtigste, en database kan: sat tabeller sammen på en fælles kolonne med `merge`. I en database hedder det et **join**.
-:::
-
-## Hvad CSV-filer ikke kan
-
-Men det er stadig bare filer. Prøv at forestille jer, at fire grupper arbejder i de samme tal:
-
-::: {.incremental}
-
-1. **Ingen kontrol.** Intet forhindrer en række i `grupper` i at pege på noget, som ikke findes.
-
-2. **Ingen typer.** En CSV er tekst. Står der `"2022"` eller `2022`? Det fandt I ud af i lektion 5 (trin 10).
-
-3. **Alt skal læses.** For at finde én gruppe læser `pd.read_csv` hele filen.
-
-4. **Ingen samtidighed.** Gemmer to personer samtidig, vinder den sidste og den første forsvinder.
-
-5. **Ingen fortryd.** Går det galt halvvejs i en ændring, er filen halvt ændret.
-
-:::
-
-## Det, en database tilføjer
-
-::: {.incremental}
-
-* **Regler**, der håndhæves af databasen selv: en andel skal ligge mellem 0 og 1, en branche skal findes
-
-* **Typer**: et år er et tal, et navn er tekst
-
-* **Indekser**, der gør søgning langt hurtigere ved at man slår op i stedet for at læse det hele
-
-* **Transaktioner**: enten bliver hele ændringen gemt, eller ingen af den
-
-* **Samtidig adgang**: mange brugere på én gang, uden at de overskriver hinanden
-
-:::
-
-<br>
-
-::: {.fragment}
-De første to punkter kender I fra `Arbejdsplads`: klassen siger fra, når tallene ikke giver mening. En database gør det samme, bare for alle data, og for alle programmer, der bruger dem.
-:::
-
-## Forskellige slags databaser
-
-| Type | Kendetegn | Eksempler |
-|---|---|---|
-| **Relationel (SQL)** | Tabeller med relationer. Fast struktur | PostgreSQL, MySQL, **SQLite** |
-| **Dokument (NoSQL)** | Dokumenter, der ligner ordbøger. Fleksibel struktur | MongoDB, CouchDB |
-
-... og mange flere.
-
----
-
-Downey kapitel 13 gemmer data med modulet `shelve`. Det er en **nøgle-værdi-database**: en ordbog, der bliver gemt på disken.
-
-```python
-import shelve
-
-lager = shelve.open("medianer")      # laver én eller flere filer, alt efter styresystem
-lager["Handel"] = 0.454
-lager.close()
-```
-
-# SQL
-
-## SQL
-
-**Structured Query Language** er det sprog, man bruger til at tale med relationelle databaser.
-
-<br>
-
-> SQL er **deklarativt**, ikke imperativt.
-
-## Imperativt og deklarativt
-
-:::: {.columns}
-::: {.column width="50%"}
-**Imperativt**: hvordan, trin for trin
-
-```python
-resultat = []
-for raekke in grupper:
-    if raekke["aar"] == 2022:
-        if raekke["region_id"] == 0:
-            resultat.append(raekke)
-```
-
-Og med pandas, som i lektion 6:
-
-```python
-grupper[(grupper["aar"] == 2022)
-        & (grupper["region_id"] == 0)]
-```
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="40%"}
-**Deklarativt**: hvad, ikke hvordan
-
-```sql
-SELECT *
-FROM grupper
-WHERE aar = 2022
-  AND region_id = 0;
-```
-
-Databasen finder selv den hurtigste vej til svaret. Den kender sine indekser bedre end vi gør.
-:::
-::::
-
-## Barometeret i en database
-
-Disse slides indeholder en lille SQLite-database med et udsnit af **referencetal**: hele brancher og hele regioner, uden opdeling på størrelse og sektor.
-
-<br>
-
-Funktionen `sql()` sender en forespørgsel til databasen og giver svaret tilbage som en tabel:
-
-```python
-def sql(forespoergsel):
-    return pd.read_sql_query(forespoergsel, db)
-```
-
-<br>
-
-::: {.fragment}
-Alt herfra kører i jeres egen browser. Prøv at ændre forespørgslerne.
-:::
-
-## `SELECT`: vælg kolonner
-
-```{pyodide}
-#| autorun: false
-print(sql("""
-SELECT branche_id, branche
-FROM brancher
-"""))
-```
-
-::: {.aside}
-`SELECT` siger hvilke kolonner. `FROM` siger hvilken tabel. `SELECT *` betyder alle kolonner.
-:::
-
-## `WHERE`: vælg rækker
-
-```{pyodide}
-#| autorun: false
-print(sql("""
-SELECT gruppe_id, branche_id, aar, antal_arbejdssteder
-FROM grupper
-WHERE aar = 2022 AND region_id = 0
-"""))
-```
-
-::: {.aside}
-Det er præcis trin 10 fra notebooken i lektion 5, bare uden firkantede parenteser og `&`.
-:::
-
-## `ORDER BY`: sortér
-
-```{pyodide}
-#| autorun: false
-print(sql("""
-SELECT gruppe_id, p50
-FROM fordelinger
-WHERE dimension_id = 1
-ORDER BY p50 DESC
-LIMIT 3
-"""))
-```
-
-::: {.fragment}
-Den højeste median for kvinder er gruppe 127. Hvad er gruppe 127? Og gruppe 21? Tallene giver ingen mening uden navnene ... og navnene står i en anden tabel.
-:::
-
-## `JOIN`: sæt tabeller sammen
-
-```{pyodide}
-#| autorun: false
-print(sql("""
-SELECT brancher.branche, fordelinger.p50
-FROM fordelinger
-JOIN grupper  ON fordelinger.gruppe_id = grupper.gruppe_id
-JOIN brancher ON grupper.branche_id   = brancher.branche_id
-WHERE fordelinger.dimension_id = 1
-  AND grupper.aar = 2022
-  AND grupper.region_id = 0
-  AND brancher.branche != 'Alle'
-ORDER BY fordelinger.p50 DESC
-"""))
-```
-
-::: {.aside}
-Sammenlign med lektion 5: `fordelinger.merge(grupper, on="gruppe_id").merge(brancher, on="branche_id")`. Samme operation, to sprog.
-:::
-
-## `GROUP BY`: regn på grupper
-
-```{pyodide}
-#| autorun: false
-print(sql("""
-SELECT dimensioner.navn,
-       grupper.aar,
-       ROUND(AVG(fordelinger.p50), 3) AS gennemsnit
-FROM fordelinger
-JOIN grupper     ON fordelinger.gruppe_id    = grupper.gruppe_id
-JOIN dimensioner ON fordelinger.dimension_id = dimensioner.dimension_id
-WHERE grupper.branche_id != 0 AND grupper.region_id = 0
-GROUP BY dimensioner.navn, grupper.aar
-ORDER BY dimensioner.navn, grupper.aar
-"""))
-```
-
-::: {.fragment}
-Gennemsnittet af de otte branchers median, pr. dimension og år. Alle tre er steget fra 2012 til 2022 (i de syntetiske tal.)
-:::
-
-## SQL's fem slags kommandoer
-
-| Slags | Hvad den gør | Kommandoer |
-|---|---|---|
-| **Definition** | Laver strukturen: tabeller, kolonner, regler | `CREATE`, `ALTER`, `DROP` |
-| **Ændring** | Tilføjer, retter og sletter data | `INSERT`, `UPDATE`, `DELETE` |
-| **Forespørgsel** | Henter data | `SELECT` |
-| **Adgang** | Bestemmer, hvem der må hvad | `GRANT`, `REVOKE` |
-| **Transaktioner** | Gemmer alt eller intet | `COMMIT`, `ROLLBACK` |
-
-<br>
-
-::: {.fragment}
-I har lige brugt den tredje. Om lidt bruger vi de to første.
-:::
-
-## Fra Python til en databasefil
-
-I appen ville man gemme databasen i en fil i stedet for i hukommelsen:
-
-```python
-import sqlite3
-import pandas as pd
-
-db = sqlite3.connect("data/barometer.db")
-
-for navn in ["brancher", "regioner", "sektorer", "stoerrelser",
-             "dimensioner", "grupper", "fordelinger"]:
-    pd.read_csv(f"data/{navn}.csv").to_sql(navn, db, index=False, if_exists="replace")
-```
-
-::: {.fragment}
-Og når brugeren skal bestemme noget i forespørgslen, så brug `?` — aldrig en f-streng:
-
-```python
-branche = "Handel"                 # det, brugeren valgte
-pd.read_sql_query("SELECT * FROM brancher WHERE branche = ?", db, params=(branche,))
-```
-
-Med `?` behandler databasen brugerens tekst som en værdi og aldrig som en del af kommandoen. Ellers kan en ondsindet bruger skrive SQL ind i feltet. Det hedder *SQL injection*.
-:::
-
-# Database-design
-
-## Fire trin
-
-::: {.incremental}
-
-1. **Find tingene**: hvilke slags ting skal databasen holde styr på? Det kaldes *entiteter*
-
-2. **Find egenskaberne**: hvad skal vi vide om hver ting? Det er *attributterne*
-
-3. **Find forbindelserne**: hvordan hænger tingene sammen? Det er *relationerne*
-
-4. **Skriv skemaet**: oversæt det hele til `CREATE TABLE`
-
-:::
-
-<br>
-
-::: {.fragment}
-Det er det samme som abstraktionen i lektion 4 og klassekortene i lektion 5: hvad *er* en ting, og hvad *ved* den?
-:::
-
-## Trin 1–3 for barometeret
-
-:::: {.columns}
-::: {.column width="45%"}
-**Tingene og deres egenskaber**
-
-- **Branche**: navn
-- **Region**: navn
-- **Dimension**: navn (kvinder, seniorer, indvandrerbaggrund)
-- **Gruppe**: en branche, en region, en størrelse, en sektor, et år, og hvor mange arbejdssteder den dækker
-- **Fordeling**: en gruppe, en dimension, og fem percentiler
-:::
-
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="45%"}
-**Forbindelserne**
-
-- **En-til-mange:** én branche har mange grupper. Én gruppe har tre fordelinger, én pr. dimension
-
-- **Mange-til-mange:** findes ikke her. Men hvis én arbejdsplads kunne høre til flere brancher, ville man skulle bruge en ekstra tabel imellem
-
-:::
-::::
-
-## Trin 4: skemaet
-
-```{pyodide}
-#| autorun: false
-ny = sqlite3.connect(":memory:")
-ny.execute("PRAGMA foreign_keys = ON")
-
-ny.executescript("""
-CREATE TABLE brancher (
-    branche_id  INTEGER PRIMARY KEY,
-    branche     TEXT NOT NULL UNIQUE
-);
-
-CREATE TABLE grupper (
-    gruppe_id   INTEGER PRIMARY KEY,
-    branche_id  INTEGER NOT NULL REFERENCES brancher(branche_id),
-    aar         INTEGER NOT NULL CHECK (aar IN (2012, 2022))
-);
-
-CREATE TABLE fordelinger (
-    gruppe_id     INTEGER NOT NULL REFERENCES grupper(gruppe_id),
-    dimension_id  INTEGER NOT NULL,
-    p50           REAL NOT NULL CHECK (p50 BETWEEN 0 AND 1),
-    PRIMARY KEY (gruppe_id, dimension_id)
-);
-""")
-
-ny.execute("INSERT INTO brancher VALUES (3, 'Handel')")
-ny.execute("INSERT INTO grupper VALUES (1, 3, 2022)")
-ny.execute("INSERT INTO fordelinger VALUES (1, 1, 0.454)")
-
-print(pd.read_sql_query("SELECT * FROM fordelinger", ny))
-```
-
-::: {.aside}
-`PRIMARY KEY` er rækkens unikke id. `REFERENCES` er en **fremmednøgle**: den skal pege på en række, der findes. `CHECK` er en regel, databasen håndhæver. `UNIQUE` betyder, at samme værdi kun må stå én gang.
-:::
-
-## Databasen siger fra
-
-```{pyodide}
-#| autorun: false
-forsoeg = [
-    ("en andel over 1",             "INSERT INTO fordelinger VALUES (1, 2, 1.4)"),
-    ("en branche, der ikke findes", "INSERT INTO grupper VALUES (2, 99, 2022)"),
-    ("et år, vi ikke har tal for",  "INSERT INTO grupper VALUES (3, 3, 2017)"),
-    ("Handel én gang til",          "INSERT INTO brancher VALUES (4, 'Handel')"),
-]
-
-for hvad, kommando in forsoeg:
-    try:
-        ny.execute(kommando)
-        print(f"{hvad:<28} → gemt")
-    except sqlite3.IntegrityError as fejl:
-        print(f"{hvad:<28} → afvist: {fejl}")
-```
-
-::: {.aside}
-Fire ugyldige rækker, fire afvisninger. Det er `UgyldigArbejdsplads` fra lektion 5 igen, bare i databasen i stedet for i klassen. **Reglerne bor ét sted, og ingen kan komme uden om dem.**
-:::
-
-## SQLite-fælden
-
-```{pyodide}
-#| autorun: false
-uden = sqlite3.connect(":memory:")      # her er PRAGMA foreign_keys IKKE slået til
-
-uden.executescript("""
-CREATE TABLE brancher (branche_id INTEGER PRIMARY KEY, branche TEXT NOT NULL);
-CREATE TABLE grupper  (gruppe_id INTEGER PRIMARY KEY,
-                       branche_id INTEGER NOT NULL REFERENCES brancher(branche_id));
-""")
-
-uden.execute("INSERT INTO grupper VALUES (1, 99)")
-print(pd.read_sql_query("SELECT * FROM grupper", uden))
-print("Gemt — selvom branche 99 ikke findes.")
-```
-
-::: {.aside}
-I SQLite er fremmednøgler **slået fra**, medmindre man skriver `PRAGMA foreign_keys = ON` hver gang, man åbner databasen. Det er en af de ting, der er værd at vide, før man har brug for det.
-:::
-
-# API'er
-
-## API
-
-**Application Programming Interface** er en *kontrakt*, der bestemmer, hvordan to programmer taler sammen.
-
-::: {.incremental}
-
-* **Gæsten** (klienten) ved ikke, hvordan køkkenet virker
-
-* **Menuen** (dokumentationen) viser, hvad man kan bestille
-
-* **Tjeneren** (API'et) tager imod bestillingen og kommer tilbage med maden
-
-* **Køkkenet** (databasen) laver maden, uden at gæsten ser det
-
-:::
-
-<br>
-
-::: {.fragment}
-Det er **grænsefladen** fra lektion 4, bare mellem to programmer i stedet for mellem to funktioner. Køkkenet kan bygges om, uden at menuen ændrer sig.
-:::
-
-## REST
-
-Den mest udbredte måde at bygge API'er til nettet på. Den bygger på HTTP, som er det samme, jeres browser bruger.
-
-::: {.incremental}
-
-1. **Alt er ressourcer** med en adresse: `/api/brancher`, `/api/brancher/Handel`
-
-2. **HTTP-metoder** siger, hvad man vil gøre med dem
-
-3. **Hver forespørgsel står alene.** Serveren husker ikke, hvad du spurgte om sidst
-
-4. **Svaret er typisk JSON** og JSON ligner en Python-ordbog fra kapitel 10
-
-:::
-
-## HTTP-metoderne
-
-| Metode | Formål | I SQL | 
-|---|---|---|
-| `GET` | Hent | `SELECT` | 
-| `POST` | Opret | `INSERT` | 
-| `PUT` | Erstat det hele | `UPDATE` | 
-| `PATCH` | Ret dele | `UPDATE` | 
-| `DELETE` | Slet | `DELETE` | 
-
-## Et API til barometerets referencetal
-
-```
-GET  /api/brancher                    alle brancher
-GET  /api/brancher/Handel             medianerne for Handel i 2022
-GET  /api/regioner                    alle regioner
-GET  /api/regioner/Nordjylland        medianerne for Nordjylland
-GET  /api/grupper?branche=Handel&aar=2012
-                                      grupperne for Handel i 2012
-```
-
-## Svaret er JSON
-
-```
-GET /api/brancher/Handel
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "branche": "Handel",
-  "aar": 2022,
-  "medianer": {
-    "kvinder": 0.454,
-    "seniorer": 0.137,
-    "indvandrere": 0.126
-  }
-}
-```
-
-::: {.aside}
-Krøllede parenteser, nøgler og værdier, det er en ordbog i Python. JSON er den måde, ordbøger "rejser" over nettet på.
-:::
-
-## Statuskoder
-
-| Kode | Betydning |
-|---|---|
-| **200** | OK |
-| **201** | Oprettet |
-| **400** | Ugyldig forespørgsel | 
-| **404** | Findes ikke | 
-| **405** | Metoden er ikke tilladt | 
-| **500** | Fejl på serveren | 
-
-## Et lille API i Python
-
-```{pyodide}
-#| autorun: false
-import json
-
-def api(metode, sti):
-    """Et lille API. Klienten sender en metode og en adresse; API'et spørger databasen."""
-    if metode != "GET":
-        return 405, {"fejl": "Barometeret kan kun læses"}
-
-    dele = sti.strip("/").split("/")        # "/api/brancher/Handel" → ["api", "brancher", "Handel"]
-
-    if dele == ["api", "brancher"]:
-        svar = sql("SELECT branche FROM brancher WHERE branche != 'Alle'")
-        return 200, {"brancher": list(svar["branche"])}
-
-    if len(dele) == 3 and dele[:2] == ["api", "brancher"]:
-        svar = pd.read_sql_query("""
-            SELECT dimensioner.dimension, fordelinger.p50
-            FROM fordelinger
-            JOIN grupper     ON fordelinger.gruppe_id    = grupper.gruppe_id
-            JOIN brancher    ON grupper.branche_id       = brancher.branche_id
-            JOIN dimensioner ON fordelinger.dimension_id = dimensioner.dimension_id
-            WHERE brancher.branche = ? AND grupper.aar = 2022 AND grupper.region_id = 0
-        """, db, params=(dele[2],))
-        if len(svar) == 0:
-            return 404, {"fejl": f"Branchen findes ikke: {dele[2]}"}
-        return 200, {"branche": dele[2], "aar": 2022,
-                     "medianer": dict(zip(svar["dimension"], svar["p50"]))}
-
-    return 404, {"fejl": "Ukendt adresse"}
-
-
-for metode, sti in [("GET", "/api/brancher"),
-                    ("GET", "/api/brancher/Handel"),
-                    ("GET", "/api/brancher/Fiskeri"),
-                    ("DELETE", "/api/brancher/Handel")]:
-    status, svar = api(metode, sti)
-    print(metode, sti, "→", status)
-    print("   ", json.dumps(svar, ensure_ascii=False))
-```
-
-::: {.aside}
-Hele kæden i én celle: klienten sender en metode og en adresse, API'et oversætter til SQL, databasen svarer, og API'et pakker svaret som JSON med en statuskode.
-:::
-
-## Det hele system
-
-```
-┌──────────────────────────────────────────┐
-│  KLIENT                                  │
-│  browser, app, eller et andet program    │
-└───────────────────┬──────────────────────┘
-                    │  HTTP-forespørgsel → JSON-svar
-┌───────────────────▼──────────────────────┐
-│  API                                     │
-│  tjekker forespørgslen, laver svaret     │
-└───────────────────┬──────────────────────┘
-                    │  SQL
-┌───────────────────▼──────────────────────┐
-│  DATABASE                                │
-│  gemmer data, håndhæver regler,          │
-│  gemmer alt eller intet                  │
-└──────────────────────────────────────────┘
-```
-
-::: {.fragment}
-Lagene fra lektion 4 igen. Hvert lag kender kun grænsefladen til laget nedenunder.
-:::
-
-# Workshop
-
-## Øvelse 1: SQL i browseren
-
-<span class="timer" data-time="1200"></span>
-
-Åbn [sqlitetutorial.net's øvelsesside](https://www.sqlitetutorial.net/tryit/query/sqlite-select/#invoices). Tabellen `invoices` er fakturaer fra en musikbutik.
-
-1. Vis alle kolonner og rækker fra `invoices`.
-
-2. Vis kun `BillingCountry`, `CustomerId` og `Total`.
-
-3. Hvad er den samlede omsætning pr. land?
-
-4. Hvor mange fakturaer blev udstedt i 2010?
-
-5. Hvilken kunde har brugt flest penge i alt?
-
-6. Hvilke lande har et gennemsnitligt fakturabeløb over 10?
-
-<details>
-<summary>Løsningsforslag</summary>
-
-```sql
--- 1
-SELECT * FROM invoices;
-
--- 2
-SELECT BillingCountry, CustomerId, Total FROM invoices;
-
--- 3
-SELECT BillingCountry, SUM(Total) AS SamletOmsaetning
-FROM invoices
-GROUP BY BillingCountry
-ORDER BY SamletOmsaetning DESC;
-
--- 4
-SELECT COUNT(*) AS Antal2010
-FROM invoices
-WHERE strftime('%Y', InvoiceDate) = '2010';
-
--- 5
-SELECT CustomerId, SUM(Total) AS SamletForbrug
-FROM invoices
-GROUP BY CustomerId
-ORDER BY SamletForbrug DESC
-LIMIT 1;
-
--- 6
-SELECT BillingCountry, AVG(Total) AS Gennemsnit
-FROM invoices
-GROUP BY BillingCountry
-HAVING AVG(Total) > 10
-ORDER BY Gennemsnit DESC;
-```
-
-`HAVING` er `WHERE` for grupper: `WHERE` vælger rækker, før de bliver grupperet; `HAVING` vælger grupper, efter de er regnet ud.
-
-</details>
-
-## Øvelse 2: Barometeret i SQL
-
-<span class="timer" data-time="1200"></span>
-
-Skriv jeres egne forespørgsler.
+Første princip fra lektion 1. Hvert tegn er gemt som et tal:
 
 ::: {.kode-split}
 
 ```{pyodide}
 #| autorun: false
-print(sql("""
-SELECT *
-FROM brancher
-"""))
+tekst = "Om barometeret"
+
+print(list(tekst.encode("utf-8")))
+print(len(tekst), "tegn")
+
+print(list("æøå".encode("utf-8")))
 ```
 
 :::
 
-1. Hvilke tre brancher havde den højeste median for seniorer i 2022?
+::: {.fragment}
+Fjorten tegn, fjorten tal. Men **æ**, **ø** og **å** fylder to tal hver. Tegnsættet hedder UTF-8, og det er grunden til, at danske bogstaver kan blive til `Ã¦` og `Ã¸`, når et program læser filen med det forkerte.
+:::
 
-2. Hvilken region har den laveste median for indvandrerbaggrund i 2022? *Tip: regionerne står i grupper med `branche_id = 0`.*
+## En Word-fil er ikke tekst
 
-3. Hvor meget steg medianen for kvinder i Handel fra 2012 til 2022?
+Opvarmningsarket fra lektion 6 er to sider i Word. Pakker man det ud, ser det sådan ud:
 
-4. Hvor mange arbejdssteder er der i alt i de otte brancher, pr. år? Passer det med rapportens 7.225?
-
-## Øvelse 2: løsningsforslag
-
-<details>
-<summary>Løsningsforslag</summary>
-
-```sql
--- 1 Offentlig administration (0,307), Transport (0,260), Undervisning (0,250)
-SELECT brancher.branche, fordelinger.p50
-FROM fordelinger
-JOIN grupper  ON fordelinger.gruppe_id = grupper.gruppe_id
-JOIN brancher ON grupper.branche_id   = brancher.branche_id
-WHERE fordelinger.dimension_id = 2 AND grupper.aar = 2022
-  AND grupper.region_id = 0 AND brancher.branche != 'Alle'
-ORDER BY fordelinger.p50 DESC
-LIMIT 3;
-
--- 2 Nordjylland (0,096)
-SELECT regioner.region, fordelinger.p50
-FROM fordelinger
-JOIN grupper  ON fordelinger.gruppe_id = grupper.gruppe_id
-JOIN regioner ON grupper.region_id    = regioner.region_id
-WHERE fordelinger.dimension_id = 3 AND grupper.aar = 2022
-  AND grupper.branche_id = 0 AND regioner.region != 'Alle'
-ORDER BY fordelinger.p50
-LIMIT 1;
-
--- 3 fra 0,409 til 0,454: 4,5 procentpoint
-SELECT grupper.aar, fordelinger.p50
-FROM fordelinger
-JOIN grupper  ON fordelinger.gruppe_id = grupper.gruppe_id
-JOIN brancher ON grupper.branche_id   = brancher.branche_id
-WHERE brancher.branche = 'Handel' AND fordelinger.dimension_id = 1
-  AND grupper.region_id = 0
-ORDER BY grupper.aar;
-
--- 4 8.694 i 2012 og 9.518 i 2022
-SELECT aar, SUM(antal_arbejdssteder) AS i_alt
-FROM grupper
-WHERE branche_id != 0 AND region_id = 0
-GROUP BY aar;
+```
+word/document.xml            79.664 byte    selve teksten, gemt i XML
+word/styles.xml               4.409 byte    skrifttyper og formater
+word/numbering.xml            3.172 byte    nummererede lister
+word/_rels/document.xml.rels  1.057 byte    hvad der hænger sammen med hvad
+docProps/core.xml               643 byte    forfatter, dato
+[Content_Types].xml           2.104 byte    hvilke slags filer der er med
+_rels/.rels                     718 byte
 ```
 
-Nr. 4 passer ikke med rapportens 7.225 — og det skal den heller ikke. Tallene er syntetiske, og antallet af arbejdssteder i hver gruppe er trukket tilfældigt. Det er en god påmindelse om at tjekke, om tallene hænger sammen, før man stoler på dem.
+::: {.fragment}
+En `.docx` er en **zip-fil med elleve filer**. Teksten er der, men begravet i maskinlæsbar markup. Man kan ikke se, hvad der er ændret mellem to udgaver, kun at noget er.
+:::
 
-</details>
+## Hvorfor plain text?
+
+Kieran Healy, *The Plain Person's Guide to Plain Text Social Science*:
+
+::: {.incremental}
+
+* **Det holder.** Formatet forældes ikke. Programmet kan forsvinde; teksten kan stadig læses.
+
+* **Alle værktøjer kan bruge det.** Python, Git, pandoc, Quarto og enhver *editor*.
+
+* **Man kan se, hvad der er ændret.** Linje for linje.
+
+* **Indhold og udseende er adskilt.** Man skriver *hvad*, og et program bestemmer *hvordan* det skal se ud.
+
+:::
+
+## Git kan se forskellen
+
+::: {.kode-split}
+
+```{pyodide}
+#| autorun: false
+import difflib
+
+foer = """## Hvad barometeret kan
+Barometeret er til HR-medarbejdere.
+Det viser tre tal.""".splitlines()
+
+efter = """## Hvad barometeret kan
+Barometeret er til HR-medarbejdere og journalister.
+Det viser tre tal og aldrig bare ét.""".splitlines()
+
+for linje in difflib.unified_diff(foer, efter, "om.md (før)", "om.md (efter)", lineterm=""):
+    print(linje)
+```
+
+:::
+
+::: {.aside}
+Det er præcis det, `git diff` viser. Linjer med `-` er fjernet, linjer med `+` er tilføjet. Det kan kun lade sig gøre, fordi filen er tekst.
+:::
+
+# Compilere
+
+## Fra det, mennesker skriver, til det, maskiner gør
+
+Kernighan kapitel 5: processoren i lektion 1 kan kun en håndfuld simple instruktioner: hent et tal, læg to tal sammen, gem resultatet.
+
+::: {.incremental}
+
+* Ingen skriver programmer i de instruktioner. Vi skriver i **højniveausprog** som Python.
+
+* En **compiler** oversætter fra højniveausproget til maskinens instruktioner før programmet kører.
+
+* En **fortolker** (*interpreter*) oversætter og udfører undervejs, linje for linje.
+
+:::
+
+## Python kan vise sin oversættelse
+
+```{pyodide}
+#| autorun: false
+import dis
+
+def andel(antal, i_alt):
+    return antal / i_alt
+
+dis.dis(andel)
+```
+
+::: {.fragment}
+`andel` fra lektion 4, oversat: hent `antal`, hent `i_alt`, del dem, returnér. Det er tæt på den lille computer i lektion 1. (Detaljerne afhænger af Python-versionen.)
+:::
+
+---
+
+## Hvad står der?
+
+Python har oversat `andel` til fire instruktioner. Læs dem oppefra og ned:
+
+| Linje | Instruktion | Det betyder |
+|---|---|---|
+| 3 | `RESUME` | Python gør sig klar til at køre funktionen. Den gør ikke noget, man kan se |
+| 4 | `LOAD_FAST_LOAD_FAST (antal, i_alt)` | Hent de to tal, funktionen fik med, og læg dem klar |
+| | `BINARY_OP 11 (/)` | Tag de to tal, og del det ene med det andet |
+| | `RETURN_VALUE` | Giv resultatet tilbage til den, der kaldte |
+
+::: {.incremental}
+
+* **Tallene til venstre** er linjenumrene i cellen: `def` står på linje 3, `return` på linje 4. Én linje Python blev til tre instruktioner.
+
+* **Tallene i midten** (`1` og `11`) er Pythons egne koder. `11` betyder division. Dem behøver man ikke kunne.
+
+* **Hent, regn, giv tilbage.** Det er præcis, hvad den lille computer i lektion 1 kunne: hente et tal, regne med det og gemme resultatet.
+
+:::
+
+::: {.fragment}
+Kører I cellen på en anden Python-version, ser oversættelsen lidt anderledes ud. Ældre udgaver henter de to tal med to instruktioner i stedet for én. Det gør ikke noget: **grænsefladen** `andel(antal, i_alt)` er den samme, kun implementationen under den er ændret. Det er lektion 4 igen.
+:::
+
+## Dokumenter kan også oversættes
+
+En compiler oversætter ét sprog til et andet. Det gælder ikke kun programmer.
+
+::: {.incremental}
+
+* **pandoc** oversætter mellem dokumentformater: Markdown til HTML, Word, PDF og mange flere. Healy kalder det et af de vigtigste værktøjer i sin værktøjskasse.
+
+* **Quarto** bygger oven på pandoc og kan desuden køre kode undervejs.
+
+* **Disse slides** er skrevet i plain text og oversat til den hjemmeside, I kigger på nu.
+
+:::
+
+# Markup
+
+## Tekst om tekst
+
+**Markup** er tegn i teksten, der fortæller noget *om* teksten: at noget er en overskrift, at noget skal være fed, at noget er et link.
+
+<br>
+
+| Det, der skal stå | HTML | Markdown |
+|---|---|---|
+| en overskrift | `<h2>Opslag</h2>` | `## Opslag` |
+| **fed** | `<strong>fed</strong>` | `**fed**` |
+| *kursiv* | `<em>kursiv</em>` | `*kursiv*` |
+| et link | `<a href="om.html">Om</a>` | `[Om](om.qmd)` |
+| et punkt | `<li>Handel</li>` | `- Handel` |
+
+## HTML
+
+Kernighan kapitel 10: en hjemmeside er en tekstfil med **HTML** (*HyperText Markup Language*). Browseren læser markuppen og bestemmer, hvordan det skal se ud.
+
+```{pyodide}
+#| autorun: false
+medianer = {"Sundhed og socialvæsen": 79.0, "Handel": 45.4, "Bygge og anlæg": 10.8}
+
+html = "<table>\n  <tr><th>Branche</th><th>Kvinder</th></tr>\n"
+for branche, median in medianer.items():
+    html = html + f"  <tr><td>{branche}</td><td>{median} %</td></tr>\n"
+html = html + "</table>"
+
+print(html)
+```
+
+::: {.aside}
+HTML er bare tekst. Python kan skrive den med en f-streng og det er præcis, hvad Quarto gør med jeres tabeller fra `brancher()`.
+:::
+
+## Markdown
+
+HTML er til maskiner. **Markdown** er til mennesker: markup, der ser ud som almindelig tekst, også før den er oversat.
+
+```{pyodide}
+#| autorun: false
+md = "| Branche | Kvinder |\n|---|---|\n"
+for branche, median in medianer.items():
+    md = md + f"| {branche} | {median} % |\n"
+
+print(md)
+```
+
+::: {.fragment}
+Samme tabel, halvt så mange tegn og man kan (nogenlunde) læse den, som den står. Markdown blev opfundet med netop det mål.
+:::
+
+## Markdown på én side
+
+:::: {.columns}
+::: {.column width="50%"}
+```markdown
+# Overskrift
+## Underoverskrift
+
+**fed** og *kursiv*
+
+- et punkt
+- et punkt mere
+
+1. første
+2. anden
+
+[et link](om.qmd)
+
+`kode i teksten`
+```
+:::
+
+::: {.column width="50%"}
+````markdown
+| Branche | Kvinder |
+|---|---|
+| Handel | 45,4 % |
+
+```python
+print("en kodeblok")
+```
+
+> et citat
+
+::: {.callout-note}
+En boks — kun i Quarto
+:::
+````
+:::
+::::
+
+::: {.aside}
+I VS Code og Positron viser `Ctrl + Shift + V` (`⌘ + Shift + V` på Mac) en forhåndsvisning af en Markdown-fil.
+:::
+
+## YAML
+
+Øverst i en `.qmd`-fil og i `_quarto.yml` står **YAML**: indstillinger skrevet som `nøgle: værdi`.
+
+```yaml
+website:
+  title: "Diversitetsbarometeret"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Forside
+```
+
+::: {.incremental}
+
+* **Indrykningen er grammatik.** To mellemrum ind betyder "hører til linjen over". Det er samme princip som i Python.
+
+* **Efter et kolon kommer et mellemrum.** `text:Forside` er en fejl. `text: Forside` er rigtigt.
+
+:::
+
+## CSS
+
+Markup siger *hvad* noget er. **CSS** siger, *hvordan* det skal se ud.
+
+```css
+h2 { color: #1f5fbf; }
+```
+
+<br>
+
+::: {.fragment}
+Det er lagene fra lektion 4 igen. Indholdet ved ikke, hvordan det ser ud; udseendet ved ikke, hvad indholdet siger. Man kan skifte det ene ud uden at røre det andet. Et tema i Quarto er bare en færdig CSS-fil.
+:::
+
+# Fra .qmd til hjemmeside
+
+## Quarto er en compiler for dokumenter
+
+```{mermaid}
+flowchart LR
+    A[".qmd<br>Markdown + Python"] -->|Jupyter kører koden| B[".md<br>Markdown + resultater"]
+    B -->|pandoc oversætter| C[".html"]
+    C -->|tema og CSS| D["_site/<br>hjemmesiden"]
+```
+
+<br>
+
+::: {.incremental}
+
+* Python-koden kører **én gang**, når siden bygges. Den, der læser siden, kører ingen Python.
+
+* Resultatet (tabeller, figurer) står i HTML'en som om det var skrevet.
+
+* `_site/` er **resultatet**, ikke kilden. 
+
+:::
+
+## Siderne i barometeret
+
+En hjemmeside i Quarto er en mappe:
+
+```
+_quarto.yml      navigationen, temaet, hvilke sider der findes
+
+index.qmd        Forside         I skriver den
+barometer.qmd    Barometer       et eksempel på figuren
+opslag.qmd       Opslag          tabeller og figurer fra brancher()
+om.qmd           Om              henter app/om.md
+```
+
+<br>
+
+::: {.fragment}
+Byg og se den, mens I arbejder:
+
+```bash
+quarto preview
+```
+:::
+
+## Den samme kode, et nyt lag
+
+`opslag.qmd` laver ingen beregninger selv. Den kalder de funktioner, I læste i lektion 6:
+
+````markdown
+```{{python}}
+from app.barometer import Referencetal
+from app.barometer.opslag import brancher
+from app.barometer.figur import tegn_opslag
+
+referencetal = Referencetal()
+```
+
+```{{python}}
+figur = tegn_opslag(brancher(referencetal, "kvinder"))
+```
+````
+
+## Én tekst, to steder
+
+`om.qmd` er kun tre linjer:
+
+```markdown
+---
+pagetitle: "Om barometeret"
+---
+
+{{</* include app/om.md */>}}
+```
+
+::: {.incremental}
+
+* Om-siden i appen og Om-siden på hjemmesiden er **den samme fil**.
+
+* Retter man den ét sted, er den rettet begge steder.
+
+* Det er samme idé som opslagstabellerne i lektion 5: noget, der skal være ens, skal kun stå ét sted.
+
+:::
+
+# Workshop
+
+## Før I starter
+
+<span class="timer" data-time="600"></span>
+
+**Sync fork** og `git pull`. Så får I `_quarto.yml`, `barometer.qmd`, `opslag.qmd` og `om.qmd`, og en `index.qmd` med kommentarer, I skal skrive om.
+
+::: {.incremental}
+
+* **Positron** har Quarto indbygget. **VS Code** skal have Quarto installeret fra quarto.org og udvidelsen *Quarto*.
+
+* Quarto skal kunne køre Python. Tjek det i terminalen:
+
+  ```bash
+  quarto check jupyter
+  ```
+
+  Mangler Jupyter, så:  `python -m pip install jupyter`
+
+:::
+
+## Øvelse 1: Markdown på ti minutter
+
+<span class="timer" data-time="600"></span>
+
+Lav en fil, `kladde.md`, og genskab teksten fra arket — overskrifter, fed og kursiv, en liste, et link og en tabel.
+
+Åbn forhåndsvisningen ved siden af med `Ctrl + Shift + V`, og ret, til de ser ens ud.
+
+## Øvelse 2: Forsiden
+
+<span class="timer" data-time="1200"></span>
+
+Åbn `index.qmd`, og skriv forsiden. Kommentarerne siger, hvad der skal stå hvor.
+
+::: {.incremental}
+
+* **Hvad barometeret kan**: to eller tre sætninger, med det vigtigste ord i **fed**
+
+* **Tre sider**: en liste med et link til hver
+
+* **Det, barometeret ikke gør**: de vigtigste beslutninger fra `KOEREPLAN.md`
+
+:::
+
+<br>
+
+::: {.fragment}
+Kør `quarto preview` i terminalen. Siden opdaterer sig selv, hver gang I gemmer.
+:::
+
+## Øvelse 3: Opslag og Barometer
+
+<span class="timer" data-time="1200"></span>
+
+Koden står der allerede. Mangler der noget, er det **teksten**.
+
+::: {.incremental}
+
+* `opslag.qmd`: forklar, hvordan man læser figuren — hvad er søjlen, hvad er prikken? Og hvad er en median, og hvad er den ikke?
+
+* `barometer.qmd`: forklar figuren med jeres egne ord — det lyse bånd, det mørke bånd, stregen og trekanten.
+
+:::
+
+## Øvelse 4: Navigationen og udseendet
+
+<span class="timer" data-time="900"></span>
+
+Åbn `_quarto.yml`.
+
+::: {.incremental}
+
+1. Byt om på rækkefølgen af to sider i menuen. Gem, og se det skifte.
+
+2. Skift temaet fra `cosmo` til et af Quartos andre: fx `flatly`, `litera` eller `minty`.
+
+3. Ret teksten i bunden af siden, så den nævner jeres gruppe.
+
+4. Lav en fejl med vilje: fjern mellemrummet efter et kolon. Hvad siger Quarto? Ret den igen.
+
+:::
+
+## Når det driller
+
+| Det, I ser | Det betyder |
+|---|---|
+| `quarto: command not found` | Quarto er ikke installeret. Positron har det indbygget; ellers quarto.org |
+| `Jupyter is not available` | `python -m pip install jupyter`, og så `quarto check jupyter` |
+| `No module named 'app'` | Quarto kører ikke fra roden af repositoriet |
+| `YAML parse exception` | Indrykning, et manglende mellemrum efter kolon, eller `---` med tekst lige under |
+| Om-siden er tom | `app/om.md` mangler, eller stien i `include` er forkert |
+| `_site/` står i `git status` | `.gitignore` er blevet ændret. Den skal stå der |

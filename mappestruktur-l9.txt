@@ -1,0 +1,46 @@
+diversitetsbarometer/
+│
+├── _quarto.yml                        L9   hjemmesiden: fire sider i menuen, tema, bundtekst
+├── index.qmd                          L9   Forside   — skelet; grupperne skriver den (øvelse 2)
+├── barometer.qmd                      L9   Barometer — forklaring og figuren for en eksempelskole
+├── opslag.qmd                         L9   Opslag    — tre faneblade med figur og tabel
+├── om.qmd                             L9   Om        — henter app/om.md
+│
+├── README.md                          L3   projektbeskrivelsen
+├── KOEREPLAN.md                       L5   aftalen, alle bygger efter
+├── DESIGN.md                          L5   gruppernes beslutninger
+├── GRUPPE.md                          L3   hvem de er, aftaler, beslutningslog
+├── .gitignore                         L3   bl.a. /_site/ og /.quarto/
+├── .github/
+│   └── pull_request_template.md       L3
+│
+├── oevelse-barometerets-kerne.ipynb   L5   notebook — skal ligge i roden
+├── oevelse-brugerfladen.ipynb         L6   notebook — skal ligge i roden
+│
+├── app/
+│   ├── README.md                      L5   sådan kører I appen
+│   ├── app.py                         L6   appen med tre faner
+│   ├── om.md                          L6   Om-teksten — bruges af både appen og om.qmd
+│   └── barometer/                          kernen
+│       ├── __init__.py                L5
+│       ├── fejl.py                    L5
+│       ├── arbejdsplads.py            L5   gruppernes egen klasse
+│       ├── referencetal.py            L5
+│       ├── figur.py                   L6
+│       ├── tekst.py                   L6
+│       └── opslag.py                  L6
+│
+├── tests/
+│   ├── test_arbejdsplads.py           L5
+│   └── test_udvidelser.py             L6
+│
+├── data/                              L5   referencetallene som syv tabeller
+│   ├── README.md
+│   ├── brancher.csv  regioner.csv  sektorer.csv  stoerrelser.csv  dimensioner.csv
+│   ├── grupper.csv  fordelinger.csv  metadata.csv
+│   ├── lav_syntetiske_data.py  lav_fladt.py
+│   └── afledt/referencetal.csv
+│
+├── samarbejdspartnere/                L3   _skabelon.md, jeppefq.md
+├── python/                            L3   README.md, samarbejdspartnere.py
+└── rapport/.gitkeep                   L3

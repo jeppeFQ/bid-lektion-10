@@ -13,7 +13,7 @@
 
   <meta name="author" content="Jeppe Fjeldgaard Qvist">
   <meta name="dcterms.date" content="2026-10-06">
-  <title>Lektion 8</title>
+  <title>Lektion 9</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -203,8 +203,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Lektion 8</h1>
-  <p class="subtitle">SQL og databaser</p>
+  <h1 class="title">Lektion 9</h1>
+  <p class="subtitle">Plain text, compilere og markup</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -226,23 +226,12 @@ mkdir -p .qmd-pause && mv *.qmd .qmd-pause/ && \
 </section>
 <section id="dagens-program" class="slide level2 scrollable">
 <h2>Dagens program</h2>
-<div class="cell" data-autorun="true">
-<div>
-<div id="pyodide-1" class="exercise-cell">
-
-</div>
-<script type="pyodide-1-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiaW5jbHVkZSI6ZmFsc2UsIm91dHB1dCI6ZmFsc2V9LCJjb2RlIjoiaW1wb3J0IGlvXG5pbXBvcnQgc3FsaXRlM1xuaW1wb3J0IHBhbmRhcyBhcyBwZFxuXG5VRFNOSVQgPSB7XG4gXCJicmFuY2hlclwiOiBcImJyYW5jaGVfaWQsYnJhbmNoZVxcbjAsQWxsZVxcbjEsVW5kZXJ2aXNuaW5nXFxuMixTdW5kaGVkIG9nIHNvY2lhbHbDpnNlblxcbjMsSGFuZGVsXFxuNCxJbmR1c3RyaVxcbjUsQnlnZ2Ugb2cgYW5sw6ZnXFxuNixUcmFuc3BvcnRcXG43LE9mZmVudGxpZyBhZG1pbmlzdHJhdGlvblxcbjgsSW5mb3JtYXRpb24gb2cga29tbXVuaWthdGlvblwiLFxuIFwicmVnaW9uZXJcIjogXCJyZWdpb25faWQscmVnaW9uXFxuMCxBbGxlXFxuMSxIb3ZlZHN0YWRlblxcbjIsU2rDpmxsYW5kXFxuMyxTeWRkYW5tYXJrXFxuNCxNaWR0anlsbGFuZFxcbjUsTm9yZGp5bGxhbmRcIixcbiBcImRpbWVuc2lvbmVyXCI6IFwiZGltZW5zaW9uX2lkLGRpbWVuc2lvbixuYXZuXFxuMSxrdmluZGVyLEt2aW5kZXJcXG4yLHNlbmlvcmVyLFNlbmlvcmVyXFxuMyxpbmR2YW5kcmVyZSxJbmR2YW5kcmVyYmFnZ3J1bmRcIixcbiBcImdydXBwZXJcIjogXCJncnVwcGVfaWQsYnJhbmNoZV9pZCxyZWdpb25faWQsYWFyLGFudGFsX2FyYmVqZHNzdGVkZXJcXG4xLDAsMCwyMDEyLDIyMjhcXG4yLDAsMSwyMDEyLDUzOVxcbjMsMCwyLDIwMTIsMTkwMFxcbjQsMCwzLDIwMTIsNTM1XFxuNSwwLDQsMjAxMiwzODZcXG42LDAsNSwyMDEyLDEzODNcXG43LDEsMCwyMDEyLDMxOVxcbjIxLDIsMCwyMDEyLDMwNlxcbjMzLDMsMCwyMDEyLDEyMzZcXG40Nyw0LDAsMjAxMiwxMDdcXG41OSw1LDAsMjAxMiw2NzFcXG43MCw2LDAsMjAxMiwyMzc2XFxuODMsNywwLDIwMTIsMjA3MFxcbjk2LDgsMCwyMDEyLDE2MDlcXG4xMDcsMCwwLDIwMjIsOTEzXFxuMTA4LDAsMSwyMDIyLDE3NTBcXG4xMDksMCwyLDIwMjIsMTg3M1xcbjExMCwwLDMsMjAyMiwyMjA0XFxuMTExLDAsNCwyMDIyLDY1OVxcbjExMiwwLDUsMjAyMiwxODA2XFxuMTEzLDEsMCwyMDIyLDIzMjJcXG4xMjcsMiwwLDIwMjIsMTEyOVxcbjE0MiwzLDAsMjAyMiwxMjE3XFxuMTU3LDQsMCwyMDIyLDEzOTRcXG4xNzEsNSwwLDIwMjIsMzQ3XFxuMTg1LDYsMCwyMDIyLDE1NDRcXG4xOTgsNywwLDIwMjIsOTY1XFxuMjExLDgsMCwyMDIyLDYwMFwiLFxuIFwiZm9yZGVsaW5nZXJcIjogXCJncnVwcGVfaWQsZGltZW5zaW9uX2lkLHAyNSxwNTAscDc1XFxuMSwxLDAuMzMxLDAuNDEyLDAuNDkzXFxuMSwyLDAuMDgyLDAuMTYzLDAuMjQ0XFxuMSwzLDAuMDQ2LDAuMTI3LDAuMjA4XFxuMiwxLDAuMzM3LDAuNDE4LDAuNDk5XFxuMiwyLDAuMTA2LDAuMTg3LDAuMjY4XFxuMiwzLDAuMDc2LDAuMTU3LDAuMjM3XFxuMywxLDAuMzI0LDAuNDA1LDAuNDg2XFxuMywyLDAuMTA3LDAuMTg4LDAuMjY5XFxuMywzLDAuMDI2LDAuMTA3LDAuMTg4XFxuNCwxLDAuMzM2LDAuNDE2LDAuNDk3XFxuNCwyLDAuMTA5LDAuMTksMC4yNzFcXG40LDMsMC4wMjQsMC4xMDUsMC4xODZcXG41LDEsMC4zMTksMC40LDAuNDhcXG41LDIsMC4xMDQsMC4xODUsMC4yNjZcXG41LDMsMC4wMjksMC4xMDksMC4xOVxcbjYsMSwwLjMyNiwwLjQwNywwLjQ4OFxcbjYsMiwwLjA5LDAuMTcxLDAuMjUyXFxuNiwzLDAuMCwwLjA2NCwwLjE0NVxcbjcsMSwwLjU3MSwwLjY1MiwwLjczMlxcbjcsMiwwLjE1MiwwLjIzMywwLjMxNFxcbjcsMywwLjAsMC4wNTUsMC4xMzZcXG4yMSwxLDAuNjkxLDAuNzcyLDAuODUzXFxuMjEsMiwwLjE0NywwLjIyOCwwLjMwOVxcbjIxLDMsMC4wMDMsMC4wODQsMC4xNjVcXG4zMywxLDAuMzI4LDAuNDA5LDAuNDlcXG4zMywyLDAuMDA0LDAuMDg0LDAuMTY1XFxuMzMsMywwLjAwOCwwLjA4OCwwLjE2OVxcbjQ3LDEsMC4xODUsMC4yNjYsMC4zNDdcXG40NywyLDAuMTExLDAuMTkyLDAuMjczXFxuNDcsMywwLjAwOCwwLjA4OSwwLjE3XFxuNTksMSwwLjAsMC4wNjcsMC4xNDhcXG41OSwyLDAuMDk0LDAuMTc1LDAuMjU2XFxuNTksMywwLjA1NiwwLjEzNiwwLjIxN1xcbjcwLDEsMC4xNTYsMC4yMzcsMC4zMThcXG43MCwyLDAuMTQ1LDAuMjI2LDAuMzA2XFxuNzAsMywwLjEwOCwwLjE4OSwwLjI3XFxuODMsMSwwLjQ1NSwwLjUzNiwwLjYxN1xcbjgzLDIsMC4xNzcsMC4yNTgsMC4zMzlcXG44MywzLDAuMCwwLjA0NSwwLjEyNlxcbjk2LDEsMC4yMjEsMC4zMDIsMC4zODJcXG45NiwyLDAuMDUzLDAuMTMzLDAuMjE0XFxuOTYsMywwLjA0MywwLjEyNCwwLjIwNVxcbjEwNywxLDAuMzcxLDAuNDUyLDAuNTMyXFxuMTA3LDIsMC4xMzQsMC4yMTUsMC4yOTZcXG4xMDcsMywwLjA1MiwwLjEzMywwLjIxNFxcbjEwOCwxLDAuMzI3LDAuNDA4LDAuNDg5XFxuMTA4LDIsMC4xMjMsMC4yMDMsMC4yODRcXG4xMDgsMywwLjA3OCwwLjE1OSwwLjIzOVxcbjEwOSwxLDAuMzYsMC40NDEsMC41MjJcXG4xMDksMiwwLjE0NiwwLjIyNywwLjMwOFxcbjEwOSwzLDAuMDM3LDAuMTE4LDAuMTk5XFxuMTEwLDEsMC4zMzEsMC40MTIsMC40OTNcXG4xMTAsMiwwLjEzOCwwLjIxOSwwLjNcXG4xMTAsMywwLjA0MSwwLjEyMiwwLjIwM1xcbjExMSwxLDAuMzU0LDAuNDM1LDAuNTE1XFxuMTExLDIsMC4xMzcsMC4yMTgsMC4yOTlcXG4xMTEsMywwLjA0MywwLjEyNCwwLjIwNFxcbjExMiwxLDAuMzQxLDAuNDIyLDAuNTAzXFxuMTEyLDIsMC4xMjEsMC4yMDEsMC4yODJcXG4xMTIsMywwLjAxNSwwLjA5NiwwLjE3N1xcbjExMywxLDAuNTc1LDAuNjU2LDAuNzM3XFxuMTEzLDIsMC4xNjksMC4yNSwwLjMzMVxcbjExMywzLDAuMCwwLjA2OCwwLjE0OFxcbjEyNywxLDAuNzA5LDAuNzksMC44NzFcXG4xMjcsMiwwLjE1NywwLjIzOCwwLjMxOVxcbjEyNywzLDAuMDQsMC4xMiwwLjIwMVxcbjE0MiwxLDAuMzczLDAuNDU0LDAuNTM1XFxuMTQyLDIsMC4wNTYsMC4xMzcsMC4yMThcXG4xNDIsMywwLjA0NSwwLjEyNiwwLjIwN1xcbjE1NywxLDAuMjE0LDAuMjk1LDAuMzc2XFxuMTU3LDIsMC4xNDMsMC4yMjQsMC4zMDVcXG4xNTcsMywwLjA4NCwwLjE2NCwwLjI0NVxcbjE3MSwxLDAuMDI3LDAuMTA4LDAuMTg5XFxuMTcxLDIsMC4xMTUsMC4xOTYsMC4yNzdcXG4xNzEsMywwLjA4NiwwLjE2NywwLjI0OFxcbjE4NSwxLDAuMTYyLDAuMjQzLDAuMzI0XFxuMTg1LDIsMC4xNzksMC4yNiwwLjM0MVxcbjE4NSwzLDAuMDg2LDAuMTY3LDAuMjQ4XFxuMTk4LDEsMC41MTQsMC41OTQsMC42NzVcXG4xOTgsMiwwLjIyNywwLjMwNywwLjM4OFxcbjE5OCwzLDAuMCwwLjA1NywwLjEzOFxcbjIxMSwxLDAuMjI4LDAuMzA5LDAuMzlcXG4yMTEsMiwwLjA4NCwwLjE2NSwwLjI0NlxcbjIxMSwzLDAuMDQ0LDAuMTI1LDAuMjA2XCJcbn1cblxuZGIgPSBzcWxpdGUzLmNvbm5lY3QoXCI6bWVtb3J5OlwiKVxuZm9yIG5hdm4sIHRla3N0IGluIFVEU05JVC5pdGVtcygpOlxuICAgIHBkLnJlYWRfY3N2KGlvLlN0cmluZ0lPKHRla3N0KSkudG9fc3FsKG5hdm4sIGRiLCBpbmRleD1GYWxzZSlcblxuZGVmIHNxbChmb3Jlc3BvZXJnc2VsKTpcbiAgICBcIlwiXCJLw7hyIGVuIFNRTC1mb3Jlc3DDuHJnc2VsIHDDpSBiYXJvbWV0ZXJldHMgZGF0YWJhc2UsIG9nIGdpdiBzdmFyZXQgc29tIGVuIHRhYmVsLlwiXCJcIlxuICAgIHJldHVybiBwZC5yZWFkX3NxbF9xdWVyeShmb3Jlc3BvZXJnc2VsLCBkYikifQ==
-</script>
-</div>
-</div>
 <ol type="1">
-<li><p><strong>Databaser</strong>. hvad er det, og hvorfor bruger vi dem?</p></li>
-<li><p><strong>I har allerede en</strong>: barometerets <code>data/</code> er næsten en database</p></li>
-<li><p><strong>SQL</strong></p></li>
-<li><p><strong>Database-design</strong></p></li>
-<li><p><strong>API’er</strong></p></li>
-<li><p><strong>Workshop</strong></p></li>
+<li><p><strong>Plain text</strong>, det enkleste format, der findes, og hvorfor det holder</p></li>
+<li><p><strong>Compilere</strong>, fra det, mennesker skriver, til det, maskiner gør</p></li>
+<li><p><strong>Markup</strong></p></li>
+<li><p><strong>Fra .qmd til hjemmeside</strong></p></li>
+<li><p><strong>Workshop</strong>: barometerets hjemmeside</p></li>
 </ol>
 </section>
 <section id="det-i-allerede-ved" class="slide level2">
@@ -260,281 +249,136 @@ eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1
 </thead>
 <tbody>
 <tr class="odd">
+<td>Lektion 1</td>
+<td>Alt er tal. Også tekst</td>
+</tr>
+<tr class="even">
+<td>Lektion 3</td>
+<td>Git kan vise, præcis hvad der er ændret i tekstfiler</td>
+</tr>
+<tr class="odd">
 <td>Lektion 4</td>
-<td>Programmeringsparadigmer: Deklarativ programmering</td>
+<td>Kernighans lag: hvert lag kender kun grænsefladen til laget under</td>
 </tr>
 <tr class="even">
 <td>Lektion 5 og 6</td>
-<td>Referencetallene ligger i syv tabeller, der hænger sammen med id’er. I satte dem sammen med <code>merge</code></td>
+<td><code>README.md</code>, <code>DESIGN.md</code> og <code>om.md</code>, I har skrevet Markdown hele semestret</td>
 </tr>
 <tr class="odd">
-<td>Lektion 6</td>
-<td>Ordbøger (kapitel 10) og filer (kapitel 13)</td>
+<td>Lektion 8</td>
+<td>SQL og JSON er også bare tekst</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section>
-<section id="databaser" class="title-slide slide level1 center">
-<h1>Databaser</h1>
+<section id="plain-text" class="title-slide slide level1 center">
+<h1>Plain text</h1>
 
 </section>
-<section id="databaser-1" class="slide level2">
-<h2>Databaser</h2>
-<blockquote>
-<p>I har hørt ordet før. Hvad er det?</p>
-</blockquote>
-<p><span class="timer" data-time="180"></span></p>
-</section>
-<section id="en-definition" class="slide level2 scrollable">
-<h2>En definition</h2>
-<blockquote>
-<p>En database er et organiseret system til at gemme, hente og administrere data, så det er hurtigt, sikkert og pålideligt at arbejde med.</p>
-</blockquote>
-<p><br></p>
-<p>Tænk på det som et digitalt arkivskab, hvor alt er ordnet, så det let kan findes:</p>
-<ol type="1">
-<li class="fragment"><strong>Tabeller</strong> er skabets skuffer med én til hver slags ting</li>
-<li class="fragment"><strong>Rækker</strong> er de enkelte sager i skuffen</li>
-<li class="fragment"><strong>Kolonner</strong> er felterne på hver sag: titel, dato, navn</li>
-<li class="fragment"><strong>Indekser</strong> er kartoteket, der gør det hurtigt at finde én bestemt sag</li>
-<li class="fragment"><strong>Relationer</strong> forbinder sagerne på tværs af skufferne</li>
-</ol>
-</section>
-<section id="hvorfor-databaser" class="slide level2">
-<h2>Hvorfor databaser?</h2>
+<section id="hvad-er-plain-text" class="slide level2">
+<h2>Hvad er plain text?</h2>
+<p>Tekst og intet andet. Ingen skjult formatering, ingen indlejrede billeder, intet program, der skal til for at åbne den.</p>
 <ul>
-<li class="fragment"><p><strong>Persistens</strong>: data bliver gemt, også når programmet lukker</p></li>
-<li class="fragment"><p><strong>Orden</strong>: data har en fast struktur, som alle kan regne med</p></li>
-<li class="fragment"><p><strong>Hastighed</strong>: man kan finde det, man leder efter, uden at læse det hele</p></li>
-<li class="fragment"><p><strong>Sikkerhed</strong>: databasen kan nægte at gemme noget, der ikke giver mening</p></li>
+<li class="fragment"><p>En <code>.py</code>-fil er plain text. En <code>.csv</code> er plain text. En <code>.md</code> er plain text.</p></li>
+<li class="fragment"><p>En <code>.docx</code> er <strong>ikke</strong>. Heller ikke en <code>.pages</code> eller en <code>.xlsx</code>.</p></li>
+<li class="fragment"><p>Plain text kan åbnes af ethvert program på enhver computer … i dag og om 30 år.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="i-har-allerede-en" class="title-slide slide level1 center">
-<h1>I har allerede en</h1>
-
 </section>
-<section id="barometerets-data-er-næsten-en-database" class="slide level2">
-<h2>Barometerets data er næsten en database</h2>
-<p>Mappen <code>data/</code> er syv tabeller. De små tabeller har et id og et navn; de store peger på dem med id’er.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
+<section id="tekst-er-tal" class="slide level2">
+<h2>Tekst er tal</h2>
+<p>Første princip fra lektion 1. Hvert tegn er gemt som et tal:</p>
+<div class="kode-split">
+<div class="cell" data-autorun="false">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">erDiagram
-    grupper ||--o{ fordelinger : har
-    brancher ||--o{ grupper : "branche_id"
-    regioner ||--o{ grupper : "region_id"
-    sektorer ||--o{ grupper : "sektor_id"
-    stoerrelser ||--o{ grupper : "stoerrelse_id"
-    dimensioner ||--o{ fordelinger : "dimension_id"
-</pre>
+<div id="pyodide-1" class="exercise-cell">
+
 </div>
-<p></p></figure><p></p>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InRla3N0ID0gXCJPbSBiYXJvbWV0ZXJldFwiXG5cbnByaW50KGxpc3QodGVrc3QuZW5jb2RlKFwidXRmLThcIikpKVxucHJpbnQobGVuKHRla3N0KSwgXCJ0ZWduXCIpXG5cbnByaW50KGxpc3QoXCLDpsO4w6VcIi5lbmNvZGUoXCJ1dGYtOFwiKSkpIn0=
+</script>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p>Og I har allerede lavet det vigtigste, en database kan: sat tabeller sammen på en fælles kolonne med <code>merge</code>. I en database hedder det et <strong>join</strong>.</p>
+<p>Fjorten tegn, fjorten tal. Men <strong>æ</strong>, <strong>ø</strong> og <strong>å</strong> fylder to tal hver. Tegnsættet hedder UTF-8, og det er grunden til, at danske bogstaver kan blive til <code>Ã¦</code> og <code>Ã¸</code>, når et program læser filen med det forkerte.</p>
 </div>
 </section>
-<section id="hvad-csv-filer-ikke-kan" class="slide level2 scrollable">
-<h2>Hvad CSV-filer ikke kan</h2>
-<p>Men det er stadig bare filer. Prøv at forestille jer, at fire grupper arbejder i de samme tal:</p>
-<ol type="1">
-<li class="fragment"><p><strong>Ingen kontrol.</strong> Intet forhindrer en række i <code>grupper</code> i at pege på noget, som ikke findes.</p></li>
-<li class="fragment"><p><strong>Ingen typer.</strong> En CSV er tekst. Står der <code>"2022"</code> eller <code>2022</code>? Det fandt I ud af i lektion 5 (trin 10).</p></li>
-<li class="fragment"><p><strong>Alt skal læses.</strong> For at finde én gruppe læser <code>pd.read_csv</code> hele filen.</p></li>
-<li class="fragment"><p><strong>Ingen samtidighed.</strong> Gemmer to personer samtidig, vinder den sidste og den første forsvinder.</p></li>
-<li class="fragment"><p><strong>Ingen fortryd.</strong> Går det galt halvvejs i en ændring, er filen halvt ændret.</p></li>
-</ol>
+<section id="en-word-fil-er-ikke-tekst" class="slide level2">
+<h2>En Word-fil er ikke tekst</h2>
+<p>Opvarmningsarket fra lektion 6 er to sider i Word. Pakker man det ud, ser det sådan ud:</p>
+<pre><code>word/document.xml            79.664 byte    selve teksten, gemt i XML
+word/styles.xml               4.409 byte    skrifttyper og formater
+word/numbering.xml            3.172 byte    nummererede lister
+word/_rels/document.xml.rels  1.057 byte    hvad der hænger sammen med hvad
+docProps/core.xml               643 byte    forfatter, dato
+[Content_Types].xml           2.104 byte    hvilke slags filer der er med
+_rels/.rels                     718 byte</code></pre>
+<div class="fragment">
+<p>En <code>.docx</code> er en <strong>zip-fil med elleve filer</strong>. Teksten er der, men begravet i maskinlæsbar markup. Man kan ikke se, hvad der er ændret mellem to udgaver, kun at noget er.</p>
+</div>
 </section>
-<section id="det-en-database-tilføjer" class="slide level2">
-<h2>Det, en database tilføjer</h2>
+<section id="hvorfor-plain-text" class="slide level2">
+<h2>Hvorfor plain text?</h2>
+<p>Kieran Healy, <em>The Plain Person’s Guide to Plain Text Social Science</em>:</p>
 <ul>
-<li class="fragment"><p><strong>Regler</strong>, der håndhæves af databasen selv: en andel skal ligge mellem 0 og 1, en branche skal findes</p></li>
-<li class="fragment"><p><strong>Typer</strong>: et år er et tal, et navn er tekst</p></li>
-<li class="fragment"><p><strong>Indekser</strong>, der gør søgning langt hurtigere ved at man slår op i stedet for at læse det hele</p></li>
-<li class="fragment"><p><strong>Transaktioner</strong>: enten bliver hele ændringen gemt, eller ingen af den</p></li>
-<li class="fragment"><p><strong>Samtidig adgang</strong>: mange brugere på én gang, uden at de overskriver hinanden</p></li>
+<li class="fragment"><p><strong>Det holder.</strong> Formatet forældes ikke. Programmet kan forsvinde; teksten kan stadig læses.</p></li>
+<li class="fragment"><p><strong>Alle værktøjer kan bruge det.</strong> Python, Git, pandoc, Quarto og enhver <em>editor</em>.</p></li>
+<li class="fragment"><p><strong>Man kan se, hvad der er ændret.</strong> Linje for linje.</p></li>
+<li class="fragment"><p><strong>Indhold og udseende er adskilt.</strong> Man skriver <em>hvad</em>, og et program bestemmer <em>hvordan</em> det skal se ud.</p></li>
 </ul>
-<p><br></p>
-<div class="fragment">
-<p>De første to punkter kender I fra <code>Arbejdsplads</code>: klassen siger fra, når tallene ikke giver mening. En database gør det samme, bare for alle data, og for alle programmer, der bruger dem.</p>
-</div>
 </section>
-<section id="forskellige-slags-databaser" class="slide level2">
-<h2>Forskellige slags databaser</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Kendetegn</th>
-<th>Eksempler</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Relationel (SQL)</strong></td>
-<td>Tabeller med relationer. Fast struktur</td>
-<td>PostgreSQL, MySQL, <strong>SQLite</strong></td>
-</tr>
-<tr class="even">
-<td><strong>Dokument (NoSQL)</strong></td>
-<td>Dokumenter, der ligner ordbøger. Fleksibel struktur</td>
-<td>MongoDB, CouchDB</td>
-</tr>
-</tbody>
-</table>
-<p>… og mange flere.</p>
-</section>
-<section class="slide level2">
-
-<p>Downey kapitel 13 gemmer data med modulet <code>shelve</code>. Det er en <strong>nøgle-værdi-database</strong>: en ordbog, der bliver gemt på disken.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> shelve</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a>lager <span class="op">=</span> shelve.<span class="bu">open</span>(<span class="st">"medianer"</span>)      <span class="co"># laver én eller flere filer, alt efter styresystem</span></span>
-<span id="cb1-4"><a href=""></a>lager[<span class="st">"Handel"</span>] <span class="op">=</span> <span class="fl">0.454</span></span>
-<span id="cb1-5"><a href=""></a>lager.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="sql" class="title-slide slide level1 center">
-<h1>SQL</h1>
-
-</section>
-<section id="sql-1" class="slide level2">
-<h2>SQL</h2>
-<p><strong>Structured Query Language</strong> er det sprog, man bruger til at tale med relationelle databaser.</p>
-<p><br></p>
-<blockquote>
-<p>SQL er <strong>deklarativt</strong>, ikke imperativt.</p>
-</blockquote>
-</section>
-<section id="imperativt-og-deklarativt" class="slide level2">
-<h2>Imperativt og deklarativt</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Imperativt</strong>: hvordan, trin for trin</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>resultat <span class="op">=</span> []</span>
-<span id="cb2-2"><a href=""></a><span class="cf">for</span> raekke <span class="kw">in</span> grupper:</span>
-<span id="cb2-3"><a href=""></a>    <span class="cf">if</span> raekke[<span class="st">"aar"</span>] <span class="op">==</span> <span class="dv">2022</span>:</span>
-<span id="cb2-4"><a href=""></a>        <span class="cf">if</span> raekke[<span class="st">"region_id"</span>] <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-5"><a href=""></a>            resultat.append(raekke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Og med pandas, som i lektion 6:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>grupper[(grupper[<span class="st">"aar"</span>] <span class="op">==</span> <span class="dv">2022</span>)</span>
-<span id="cb3-2"><a href=""></a>        <span class="op">&amp;</span> (grupper[<span class="st">"region_id"</span>] <span class="op">==</span> <span class="dv">0</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:10%;">
-
-</div><div class="column" style="width:40%;">
-<p><strong>Deklarativt</strong>: hvad, ikke hvordan</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb4-2"><a href=""></a><span class="kw">FROM</span> grupper</span>
-<span id="cb4-3"><a href=""></a><span class="kw">WHERE</span> aar <span class="op">=</span> <span class="dv">2022</span></span>
-<span id="cb4-4"><a href=""></a>  <span class="kw">AND</span> region_id <span class="op">=</span> <span class="dv">0</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Databasen finder selv den hurtigste vej til svaret. Den kender sine indekser bedre end vi gør.</p>
-</div></div>
-</section>
-<section id="barometeret-i-en-database" class="slide level2">
-<h2>Barometeret i en database</h2>
-<p>Disse slides indeholder en lille SQLite-database med et udsnit af <strong>referencetal</strong>: hele brancher og hele regioner, uden opdeling på størrelse og sektor.</p>
-<p><br></p>
-<p>Funktionen <code>sql()</code> sender en forespørgsel til databasen og giver svaret tilbage som en tabel:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="kw">def</span> sql(forespoergsel):</span>
-<span id="cb5-2"><a href=""></a>    <span class="cf">return</span> pd.read_sql_query(forespoergsel, db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<div class="fragment">
-<p>Alt herfra kører i jeres egen browser. Prøv at ændre forespørgslerne.</p>
-</div>
-</section>
-<section id="select-vælg-kolonner" class="slide level2">
-<h2><code>SELECT</code>: vælg kolonner</h2>
+<section id="git-kan-se-forskellen" class="slide level2">
+<h2>Git kan se forskellen</h2>
+<div class="kode-split">
 <div class="cell" data-autorun="false">
 <div>
 <div id="pyodide-2" class="exercise-cell">
 
 </div>
 <script type="pyodide-2-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCBicmFuY2hlX2lkLCBicmFuY2hlXG5GUk9NIGJyYW5jaGVyXG5cIlwiXCIpKSJ9
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImltcG9ydCBkaWZmbGliXG5cbmZvZXIgPSBcIlwiXCIjIyBIdmFkIGJhcm9tZXRlcmV0IGthblxuQmFyb21ldGVyZXQgZXIgdGlsIEhSLW1lZGFyYmVqZGVyZS5cbkRldCB2aXNlciB0cmUgdGFsLlwiXCJcIi5zcGxpdGxpbmVzKClcblxuZWZ0ZXIgPSBcIlwiXCIjIyBIdmFkIGJhcm9tZXRlcmV0IGthblxuQmFyb21ldGVyZXQgZXIgdGlsIEhSLW1lZGFyYmVqZGVyZSBvZyBqb3VybmFsaXN0ZXIuXG5EZXQgdmlzZXIgdHJlIHRhbCBvZyBhbGRyaWcgYmFyZSDDqXQuXCJcIlwiLnNwbGl0bGluZXMoKVxuXG5mb3IgbGluamUgaW4gZGlmZmxpYi51bmlmaWVkX2RpZmYoZm9lciwgZWZ0ZXIsIFwib20ubWQgKGbDuHIpXCIsIFwib20ubWQgKGVmdGVyKVwiLCBsaW5ldGVybT1cIlwiKTpcbiAgICBwcmludChsaW5qZSkifQ==
 </script>
+</div>
 </div>
 </div>
 
 <aside><div>
-<p><code>SELECT</code> siger hvilke kolonner. <code>FROM</code> siger hvilken tabel. <code>SELECT *</code> betyder alle kolonner.</p>
-</div></aside></section>
-<section id="where-vælg-rækker" class="slide level2">
-<h2><code>WHERE</code>: vælg rækker</h2>
+<p>Det er præcis det, <code>git diff</code> viser. Linjer med <code>-</code> er fjernet, linjer med <code>+</code> er tilføjet. Det kan kun lade sig gøre, fordi filen er tekst.</p>
+</div></aside></section></section>
+<section>
+<section id="compilere" class="title-slide slide level1 center">
+<h1>Compilere</h1>
+
+</section>
+<section id="fra-det-mennesker-skriver-til-det-maskiner-gør" class="slide level2">
+<h2>Fra det, mennesker skriver, til det, maskiner gør</h2>
+<p>Kernighan kapitel 5: processoren i lektion 1 kan kun en håndfuld simple instruktioner: hent et tal, læg to tal sammen, gem resultatet.</p>
+<ul>
+<li class="fragment"><p>Ingen skriver programmer i de instruktioner. Vi skriver i <strong>højniveausprog</strong> som Python.</p></li>
+<li class="fragment"><p>En <strong>compiler</strong> oversætter fra højniveausproget til maskinens instruktioner før programmet kører.</p></li>
+<li class="fragment"><p>En <strong>fortolker</strong> (<em>interpreter</em>) oversætter og udfører undervejs, linje for linje.</p></li>
+</ul>
+</section>
+<section id="python-kan-vise-sin-oversættelse" class="slide level2">
+<h2>Python kan vise sin oversættelse</h2>
 <div class="cell" data-autorun="false">
 <div>
 <div id="pyodide-3" class="exercise-cell">
 
 </div>
 <script type="pyodide-3-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCBncnVwcGVfaWQsIGJyYW5jaGVfaWQsIGFhciwgYW50YWxfYXJiZWpkc3N0ZWRlclxuRlJPTSBncnVwcGVyXG5XSEVSRSBhYXIgPSAyMDIyIEFORCByZWdpb25faWQgPSAwXG5cIlwiXCIpKSJ9
-</script>
-</div>
-</div>
-
-<aside><div>
-<p>Det er præcis trin 10 fra notebooken i lektion 5, bare uden firkantede parenteser og <code>&amp;</code>.</p>
-</div></aside></section>
-<section id="order-by-sortér" class="slide level2">
-<h2><code>ORDER BY</code>: sortér</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-4" class="exercise-cell">
-
-</div>
-<script type="pyodide-4-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCBncnVwcGVfaWQsIHA1MFxuRlJPTSBmb3JkZWxpbmdlclxuV0hFUkUgZGltZW5zaW9uX2lkID0gMVxuT1JERVIgQlkgcDUwIERFU0NcbkxJTUlUIDNcblwiXCJcIikpIn0=
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImltcG9ydCBkaXNcblxuZGVmIGFuZGVsKGFudGFsLCBpX2FsdCk6XG4gICAgcmV0dXJuIGFudGFsIC8gaV9hbHRcblxuZGlzLmRpcyhhbmRlbCkifQ==
 </script>
 </div>
 </div>
 <div class="fragment">
-<p>Den højeste median for kvinder er gruppe 127. Hvad er gruppe 127? Og gruppe 21? Tallene giver ingen mening uden navnene … og navnene står i en anden tabel.</p>
+<p><code>andel</code> fra lektion 4, oversat: hent <code>antal</code>, hent <code>i_alt</code>, del dem, returnér. Det er tæt på den lille computer i lektion 1. (Detaljerne afhænger af Python-versionen.)</p>
 </div>
 </section>
-<section id="join-sæt-tabeller-sammen" class="slide level2">
-<h2><code>JOIN</code>: sæt tabeller sammen</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-5" class="exercise-cell">
-
-</div>
-<script type="pyodide-5-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCBicmFuY2hlci5icmFuY2hlLCBmb3JkZWxpbmdlci5wNTBcbkZST00gZm9yZGVsaW5nZXJcbkpPSU4gZ3J1cHBlciAgT04gZm9yZGVsaW5nZXIuZ3J1cHBlX2lkID0gZ3J1cHBlci5ncnVwcGVfaWRcbkpPSU4gYnJhbmNoZXIgT04gZ3J1cHBlci5icmFuY2hlX2lkICAgPSBicmFuY2hlci5icmFuY2hlX2lkXG5XSEVSRSBmb3JkZWxpbmdlci5kaW1lbnNpb25faWQgPSAxXG4gIEFORCBncnVwcGVyLmFhciA9IDIwMjJcbiAgQU5EIGdydXBwZXIucmVnaW9uX2lkID0gMFxuICBBTkQgYnJhbmNoZXIuYnJhbmNoZSAhPSAnQWxsZSdcbk9SREVSIEJZIGZvcmRlbGluZ2VyLnA1MCBERVNDXG5cIlwiXCIpKSJ9
-</script>
-</div>
-</div>
-
-<aside><div>
-<p>Sammenlign med lektion 5: <code>fordelinger.merge(grupper, on="gruppe_id").merge(brancher, on="branche_id")</code>. Samme operation, to sprog.</p>
-</div></aside></section>
-<section id="group-by-regn-på-grupper" class="slide level2">
-<h2><code>GROUP BY</code>: regn på grupper</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-6" class="exercise-cell">
-
-</div>
-<script type="pyodide-6-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCBkaW1lbnNpb25lci5uYXZuLFxuICAgICAgIGdydXBwZXIuYWFyLFxuICAgICAgIFJPVU5EKEFWRyhmb3JkZWxpbmdlci5wNTApLCAzKSBBUyBnZW5uZW1zbml0XG5GUk9NIGZvcmRlbGluZ2VyXG5KT0lOIGdydXBwZXIgICAgIE9OIGZvcmRlbGluZ2VyLmdydXBwZV9pZCAgICA9IGdydXBwZXIuZ3J1cHBlX2lkXG5KT0lOIGRpbWVuc2lvbmVyIE9OIGZvcmRlbGluZ2VyLmRpbWVuc2lvbl9pZCA9IGRpbWVuc2lvbmVyLmRpbWVuc2lvbl9pZFxuV0hFUkUgZ3J1cHBlci5icmFuY2hlX2lkICE9IDAgQU5EIGdydXBwZXIucmVnaW9uX2lkID0gMFxuR1JPVVAgQlkgZGltZW5zaW9uZXIubmF2biwgZ3J1cHBlci5hYXJcbk9SREVSIEJZIGRpbWVuc2lvbmVyLm5hdm4sIGdydXBwZXIuYWFyXG5cIlwiXCIpKSJ9
-</script>
-</div>
-</div>
-<div class="fragment">
-<p>Gennemsnittet af de otte branchers median, pr. dimension og år. Alle tre er steget fra 2012 til 2022 (i de syntetiske tal.)</p>
-</div>
-</section>
-<section id="sqls-fem-slags-kommandoer" class="slide level2">
-<h2>SQL’s fem slags kommandoer</h2>
+<section id="hvad-står-der" class="slide level2">
+<h2>Hvad står der?</h2>
+<p>Python har oversat <code>andel</code> til fire instruktioner. Læs dem oppefra og ned:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -543,446 +387,367 @@ eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InBy
 </colgroup>
 <thead>
 <tr class="header">
-<th>Slags</th>
-<th>Hvad den gør</th>
-<th>Kommandoer</th>
+<th>Linje</th>
+<th>Instruktion</th>
+<th>Det betyder</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Definition</strong></td>
-<td>Laver strukturen: tabeller, kolonner, regler</td>
-<td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></td>
+<td>3</td>
+<td><code>RESUME</code></td>
+<td>Python gør sig klar til at køre funktionen. Den gør ikke noget, man kan se</td>
 </tr>
 <tr class="even">
-<td><strong>Ændring</strong></td>
-<td>Tilføjer, retter og sletter data</td>
-<td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+<td>4</td>
+<td><code>LOAD_FAST_LOAD_FAST (antal, i_alt)</code></td>
+<td>Hent de to tal, funktionen fik med, og læg dem klar</td>
 </tr>
 <tr class="odd">
-<td><strong>Forespørgsel</strong></td>
-<td>Henter data</td>
-<td><code>SELECT</code></td>
+<td></td>
+<td><code>BINARY_OP 11 (/)</code></td>
+<td>Tag de to tal, og del det ene med det andet</td>
 </tr>
 <tr class="even">
-<td><strong>Adgang</strong></td>
-<td>Bestemmer, hvem der må hvad</td>
-<td><code>GRANT</code>, <code>REVOKE</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Transaktioner</strong></td>
-<td>Gemmer alt eller intet</td>
-<td><code>COMMIT</code>, <code>ROLLBACK</code></td>
+<td></td>
+<td><code>RETURN_VALUE</code></td>
+<td>Giv resultatet tilbage til den, der kaldte</td>
 </tr>
 </tbody>
 </table>
-<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Tallene til venstre</strong> er linjenumrene i cellen: <code>def</code> står på linje 3, <code>return</code> på linje 4. Én linje Python blev til tre instruktioner.</p></li>
+<li class="fragment"><p><strong>Tallene i midten</strong> (<code>1</code> og <code>11</code>) er Pythons egne koder. <code>11</code> betyder division. Dem behøver man ikke kunne.</p></li>
+<li class="fragment"><p><strong>Hent, regn, giv tilbage.</strong> Det er præcis, hvad den lille computer i lektion 1 kunne: hente et tal, regne med det og gemme resultatet.</p></li>
+</ul>
 <div class="fragment">
-<p>I har lige brugt den tredje. Om lidt bruger vi de to første.</p>
+<p>Kører I cellen på en anden Python-version, ser oversættelsen lidt anderledes ud. Ældre udgaver henter de to tal med to instruktioner i stedet for én. Det gør ikke noget: <strong>grænsefladen</strong> <code>andel(antal, i_alt)</code> er den samme, kun implementationen under den er ændret. Det er lektion 4 igen.</p>
 </div>
 </section>
-<section id="fra-python-til-en-databasefil" class="slide level2">
-<h2>Fra Python til en databasefil</h2>
-<p>I appen ville man gemme databasen i en fil i stedet for i hukommelsen:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">import</span> sqlite3</span>
-<span id="cb6-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-3"><a href=""></a></span>
-<span id="cb6-4"><a href=""></a>db <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"data/barometer.db"</span>)</span>
-<span id="cb6-5"><a href=""></a></span>
-<span id="cb6-6"><a href=""></a><span class="cf">for</span> navn <span class="kw">in</span> [<span class="st">"brancher"</span>, <span class="st">"regioner"</span>, <span class="st">"sektorer"</span>, <span class="st">"stoerrelser"</span>,</span>
-<span id="cb6-7"><a href=""></a>             <span class="st">"dimensioner"</span>, <span class="st">"grupper"</span>, <span class="st">"fordelinger"</span>]:</span>
-<span id="cb6-8"><a href=""></a>    pd.read_csv(<span class="ss">f"data/</span><span class="sc">{</span>navn<span class="sc">}</span><span class="ss">.csv"</span>).to_sql(navn, db, index<span class="op">=</span><span class="va">False</span>, if_exists<span class="op">=</span><span class="st">"replace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="dokumenter-kan-også-oversættes" class="slide level2">
+<h2>Dokumenter kan også oversættes</h2>
+<p>En compiler oversætter ét sprog til et andet. Det gælder ikke kun programmer.</p>
+<ul>
+<li class="fragment"><p><strong>pandoc</strong> oversætter mellem dokumentformater: Markdown til HTML, Word, PDF og mange flere. Healy kalder det et af de vigtigste værktøjer i sin værktøjskasse.</p></li>
+<li class="fragment"><p><strong>Quarto</strong> bygger oven på pandoc og kan desuden køre kode undervejs.</p></li>
+<li class="fragment"><p><strong>Disse slides</strong> er skrevet i plain text og oversat til den hjemmeside, I kigger på nu.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="markup" class="title-slide slide level1 center">
+<h1>Markup</h1>
+
+</section>
+<section id="tekst-om-tekst" class="slide level2">
+<h2>Tekst om tekst</h2>
+<p><strong>Markup</strong> er tegn i teksten, der fortæller noget <em>om</em> teksten: at noget er en overskrift, at noget skal være fed, at noget er et link.</p>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Det, der skal stå</th>
+<th>HTML</th>
+<th>Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>en overskrift</td>
+<td><code>&lt;h2&gt;Opslag&lt;/h2&gt;</code></td>
+<td><code>## Opslag</code></td>
+</tr>
+<tr class="even">
+<td><strong>fed</strong></td>
+<td><code>&lt;strong&gt;fed&lt;/strong&gt;</code></td>
+<td><code>**fed**</code></td>
+</tr>
+<tr class="odd">
+<td><em>kursiv</em></td>
+<td><code>&lt;em&gt;kursiv&lt;/em&gt;</code></td>
+<td><code>*kursiv*</code></td>
+</tr>
+<tr class="even">
+<td>et link</td>
+<td><code>&lt;a href="om.html"&gt;Om&lt;/a&gt;</code></td>
+<td><code>[Om](om.qmd)</code></td>
+</tr>
+<tr class="odd">
+<td>et punkt</td>
+<td><code>&lt;li&gt;Handel&lt;/li&gt;</code></td>
+<td><code>- Handel</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="html" class="slide level2">
+<h2>HTML</h2>
+<p>Kernighan kapitel 10: en hjemmeside er en tekstfil med <strong>HTML</strong> (<em>HyperText Markup Language</em>). Browseren læser markuppen og bestemmer, hvordan det skal se ud.</p>
+<div class="cell" data-autorun="false">
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im1lZGlhbmVyID0ge1wiU3VuZGhlZCBvZyBzb2NpYWx2w6ZzZW5cIjogNzkuMCwgXCJIYW5kZWxcIjogNDUuNCwgXCJCeWdnZSBvZyBhbmzDpmdcIjogMTAuOH1cblxuaHRtbCA9IFwiPHRhYmxlPlxcbiAgPHRyPjx0aD5CcmFuY2hlPC90aD48dGg+S3ZpbmRlcjwvdGg+PC90cj5cXG5cIlxuZm9yIGJyYW5jaGUsIG1lZGlhbiBpbiBtZWRpYW5lci5pdGVtcygpOlxuICAgIGh0bWwgPSBodG1sICsgZlwiICA8dHI+PHRkPnticmFuY2hlfTwvdGQ+PHRkPnttZWRpYW59ICU8L3RkPjwvdHI+XFxuXCJcbmh0bWwgPSBodG1sICsgXCI8L3RhYmxlPlwiXG5cbnByaW50KGh0bWwpIn0=
+</script>
+</div>
+</div>
+
+<aside><div>
+<p>HTML er bare tekst. Python kan skrive den med en f-streng og det er præcis, hvad Quarto gør med jeres tabeller fra <code>brancher()</code>.</p>
+</div></aside></section>
+<section id="markdown" class="slide level2">
+<h2>Markdown</h2>
+<p>HTML er til maskiner. <strong>Markdown</strong> er til mennesker: markup, der ser ud som almindelig tekst, også før den er oversat.</p>
+<div class="cell" data-autorun="false">
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im1kID0gXCJ8IEJyYW5jaGUgfCBLdmluZGVyIHxcXG58LS0tfC0tLXxcXG5cIlxuZm9yIGJyYW5jaGUsIG1lZGlhbiBpbiBtZWRpYW5lci5pdGVtcygpOlxuICAgIG1kID0gbWQgKyBmXCJ8IHticmFuY2hlfSB8IHttZWRpYW59ICUgfFxcblwiXG5cbnByaW50KG1kKSJ9
+</script>
+</div>
+</div>
 <div class="fragment">
-<p>Og når brugeren skal bestemme noget i forespørgslen, så brug <code>?</code> — aldrig en f-streng:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>branche <span class="op">=</span> <span class="st">"Handel"</span>                 <span class="co"># det, brugeren valgte</span></span>
-<span id="cb7-2"><a href=""></a>pd.read_sql_query(<span class="st">"SELECT * FROM brancher WHERE branche = ?"</span>, db, params<span class="op">=</span>(branche,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Med <code>?</code> behandler databasen brugerens tekst som en værdi og aldrig som en del af kommandoen. Ellers kan en ondsindet bruger skrive SQL ind i feltet. Det hedder <em>SQL injection</em>.</p>
+<p>Samme tabel, halvt så mange tegn og man kan (nogenlunde) læse den, som den står. Markdown blev opfundet med netop det mål.</p>
+</div>
+</section>
+<section id="markdown-på-én-side" class="slide level2">
+<h2>Markdown på én side</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href=""></a><span class="fu"># Overskrift</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">## Underoverskrift</span></span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>**fed** og *kursiv*</span>
+<span id="cb2-5"><a href=""></a></span>
+<span id="cb2-6"><a href=""></a><span class="ss">- </span>et punkt</span>
+<span id="cb2-7"><a href=""></a><span class="ss">- </span>et punkt mere</span>
+<span id="cb2-8"><a href=""></a></span>
+<span id="cb2-9"><a href=""></a><span class="ss">1. </span>første</span>
+<span id="cb2-10"><a href=""></a><span class="ss">2. </span>anden</span>
+<span id="cb2-11"><a href=""></a></span>
+<span id="cb2-12"><a href=""></a><span class="co">[</span><span class="ot">et link</span><span class="co">](om.qmd)</span></span>
+<span id="cb2-13"><a href=""></a></span>
+<span id="cb2-14"><a href=""></a><span class="in">`kode i teksten`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a><span class="pp">|</span> Branche <span class="pp">|</span> Kvinder <span class="pp">|</span></span>
+<span id="cb3-2"><a href=""></a><span class="pp">|---|---|</span></span>
+<span id="cb3-3"><a href=""></a><span class="pp">|</span> Handel <span class="pp">|</span> 45,4 % <span class="pp">|</span></span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="in">```python</span></span>
+<span id="cb3-6"><a href=""></a><span class="bu">print</span>(<span class="st">"en kodeblok"</span>)</span>
+<span id="cb3-7"><a href=""></a><span class="in">```</span></span>
+<span id="cb3-8"><a href=""></a></span>
+<span id="cb3-9"><a href=""></a><span class="at">&gt; et citat</span></span>
+<span id="cb3-10"><a href=""></a></span>
+<span id="cb3-11"><a href=""></a>::: {.callout-note}</span>
+<span id="cb3-12"><a href=""></a>En boks — kun i Quarto</span>
+<span id="cb3-13"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+
+<aside><div>
+<p>I VS Code og Positron viser <code>Ctrl + Shift + V</code> (<code>⌘ + Shift + V</code> på Mac) en forhåndsvisning af en Markdown-fil.</p>
+</div></aside></section>
+<section id="yaml" class="slide level2">
+<h2>YAML</h2>
+<p>Øverst i en <code>.qmd</code>-fil og i <code>_quarto.yml</code> står <strong>YAML</strong>: indstillinger skrevet som <code>nøgle: værdi</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href=""></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href=""></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Diversitetsbarometeret"</span></span>
+<span id="cb4-3"><a href=""></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href=""></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb4-5"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb4-6"><a href=""></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Forside</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment"><p><strong>Indrykningen er grammatik.</strong> To mellemrum ind betyder “hører til linjen over”. Det er samme princip som i Python.</p></li>
+<li class="fragment"><p><strong>Efter et kolon kommer et mellemrum.</strong> <code>text:Forside</code> er en fejl. <code>text: Forside</code> er rigtigt.</p></li>
+</ul>
+</section>
+<section id="css" class="slide level2">
+<h2>CSS</h2>
+<p>Markup siger <em>hvad</em> noget er. <strong>CSS</strong> siger, <em>hvordan</em> det skal se ud.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a href=""></a>h2 { <span class="kw">color</span><span class="ch">:</span> <span class="cn">#1f5fbf</span><span class="op">;</span> }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<p>Det er lagene fra lektion 4 igen. Indholdet ved ikke, hvordan det ser ud; udseendet ved ikke, hvad indholdet siger. Man kan skifte det ene ud uden at røre det andet. Et tema i Quarto er bare en færdig CSS-fil.</p>
 </div>
 </section></section>
 <section>
-<section id="database-design" class="title-slide slide level1 center">
-<h1>Database-design</h1>
+<section id="fra-.qmd-til-hjemmeside" class="title-slide slide level1 center">
+<h1>Fra .qmd til hjemmeside</h1>
 
 </section>
-<section id="fire-trin" class="slide level2 scrollable">
-<h2>Fire trin</h2>
-<ol type="1">
-<li class="fragment"><p><strong>Find tingene</strong>: hvilke slags ting skal databasen holde styr på? Det kaldes <em>entiteter</em></p></li>
-<li class="fragment"><p><strong>Find egenskaberne</strong>: hvad skal vi vide om hver ting? Det er <em>attributterne</em></p></li>
-<li class="fragment"><p><strong>Find forbindelserne</strong>: hvordan hænger tingene sammen? Det er <em>relationerne</em></p></li>
-<li class="fragment"><p><strong>Skriv skemaet</strong>: oversæt det hele til <code>CREATE TABLE</code></p></li>
-</ol>
+<section id="quarto-er-en-compiler-for-dokumenter" class="slide level2">
+<h2>Quarto er en compiler for dokumenter</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[".qmd&lt;br&gt;Markdown + Python"] --&gt;|Jupyter kører koden| B[".md&lt;br&gt;Markdown + resultater"]
+    B --&gt;|pandoc oversætter| C[".html"]
+    C --&gt;|tema og CSS| D["_site/&lt;br&gt;hjemmesiden"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Python-koden kører <strong>én gang</strong>, når siden bygges. Den, der læser siden, kører ingen Python.</p></li>
+<li class="fragment"><p>Resultatet (tabeller, figurer) står i HTML’en som om det var skrevet.</p></li>
+<li class="fragment"><p><code>_site/</code> er <strong>resultatet</strong>, ikke kilden.</p></li>
+</ul>
+</section>
+<section id="siderne-i-barometeret" class="slide level2">
+<h2>Siderne i barometeret</h2>
+<p>En hjemmeside i Quarto er en mappe:</p>
+<pre><code>_quarto.yml      navigationen, temaet, hvilke sider der findes
+
+index.qmd        Forside         I skriver den
+barometer.qmd    Barometer       et eksempel på figuren
+opslag.qmd       Opslag          tabeller og figurer fra brancher()
+om.qmd           Om              henter app/om.md</code></pre>
 <p><br></p>
 <div class="fragment">
-<p>Det er det samme som abstraktionen i lektion 4 og klassekortene i lektion 5: hvad <em>er</em> en ting, og hvad <em>ved</em> den?</p>
+<p>Byg og se den, mens I arbejder:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href=""></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="trin-13-for-barometeret" class="slide level2">
-<h2>Trin 1–3 for barometeret</h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<p><strong>Tingene og deres egenskaber</strong></p>
+<section id="den-samme-kode-et-nyt-lag" class="slide level2">
+<h2>Den samme kode, et nyt lag</h2>
+<p><code>opslag.qmd</code> laver ingen beregninger selv. Den kalder de funktioner, I læste i lektion 6:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="in">```{python}</span></span>
+<span id="cb8-2"><a href=""></a><span class="im">from</span> app.barometer <span class="im">import</span> Referencetal</span>
+<span id="cb8-3"><a href=""></a><span class="im">from</span> app.barometer.opslag <span class="im">import</span> brancher</span>
+<span id="cb8-4"><a href=""></a><span class="im">from</span> app.barometer.figur <span class="im">import</span> tegn_opslag</span>
+<span id="cb8-5"><a href=""></a></span>
+<span id="cb8-6"><a href=""></a>referencetal <span class="op">=</span> Referencetal()</span>
+<span id="cb8-7"><a href=""></a><span class="in">```</span></span>
+<span id="cb8-8"><a href=""></a></span>
+<span id="cb8-9"><a href=""></a><span class="in">```{python}</span></span>
+<span id="cb8-10"><a href=""></a>figur <span class="op">=</span> tegn_opslag(brancher(referencetal, <span class="st">"kvinder"</span>))</span>
+<span id="cb8-11"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="én-tekst-to-steder" class="slide level2">
+<h2>Én tekst, to steder</h2>
+<p><code>om.qmd</code> er kun tre linjer:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a><span class="co">---</span></span>
+<span id="cb9-2"><a href=""></a><span class="an">pagetitle:</span><span class="co"> "Om barometeret"</span></span>
+<span id="cb9-3"><a href=""></a><span class="co">---</span></span>
+<span id="cb9-4"><a href=""></a></span>
+<span id="cb9-5"><a href=""></a>{{&lt; include app/om.md &gt;}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><strong>Branche</strong>: navn</li>
-<li><strong>Region</strong>: navn</li>
-<li><strong>Dimension</strong>: navn (kvinder, seniorer, indvandrerbaggrund)</li>
-<li><strong>Gruppe</strong>: en branche, en region, en størrelse, en sektor, et år, og hvor mange arbejdssteder den dækker</li>
-<li><strong>Fordeling</strong>: en gruppe, en dimension, og fem percentiler</li>
+<li class="fragment"><p>Om-siden i appen og Om-siden på hjemmesiden er <strong>den samme fil</strong>.</p></li>
+<li class="fragment"><p>Retter man den ét sted, er den rettet begge steder.</p></li>
+<li class="fragment"><p>Det er samme idé som opslagstabellerne i lektion 5: noget, der skal være ens, skal kun stå ét sted.</p></li>
 </ul>
-</div><div class="column" style="width:5%;">
-
-</div><div class="column" style="width:45%;">
-<p><strong>Forbindelserne</strong></p>
-<ul>
-<li><p><strong>En-til-mange:</strong> én branche har mange grupper. Én gruppe har tre fordelinger, én pr. dimension</p></li>
-<li><p><strong>Mange-til-mange:</strong> findes ikke her. Men hvis én arbejdsplads kunne høre til flere brancher, ville man skulle bruge en ekstra tabel imellem</p></li>
-</ul>
-</div></div>
-</section>
-<section id="trin-4-skemaet" class="slide level2">
-<h2>Trin 4: skemaet</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-7" class="exercise-cell">
-
-</div>
-<script type="pyodide-7-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6Im55ID0gc3FsaXRlMy5jb25uZWN0KFwiOm1lbW9yeTpcIilcbm55LmV4ZWN1dGUoXCJQUkFHTUEgZm9yZWlnbl9rZXlzID0gT05cIilcblxubnkuZXhlY3V0ZXNjcmlwdChcIlwiXCJcbkNSRUFURSBUQUJMRSBicmFuY2hlciAoXG4gICAgYnJhbmNoZV9pZCAgSU5URUdFUiBQUklNQVJZIEtFWSxcbiAgICBicmFuY2hlICAgICBURVhUIE5PVCBOVUxMIFVOSVFVRVxuKTtcblxuQ1JFQVRFIFRBQkxFIGdydXBwZXIgKFxuICAgIGdydXBwZV9pZCAgIElOVEVHRVIgUFJJTUFSWSBLRVksXG4gICAgYnJhbmNoZV9pZCAgSU5URUdFUiBOT1QgTlVMTCBSRUZFUkVOQ0VTIGJyYW5jaGVyKGJyYW5jaGVfaWQpLFxuICAgIGFhciAgICAgICAgIElOVEVHRVIgTk9UIE5VTEwgQ0hFQ0sgKGFhciBJTiAoMjAxMiwgMjAyMikpXG4pO1xuXG5DUkVBVEUgVEFCTEUgZm9yZGVsaW5nZXIgKFxuICAgIGdydXBwZV9pZCAgICAgSU5URUdFUiBOT1QgTlVMTCBSRUZFUkVOQ0VTIGdydXBwZXIoZ3J1cHBlX2lkKSxcbiAgICBkaW1lbnNpb25faWQgIElOVEVHRVIgTk9UIE5VTEwsXG4gICAgcDUwICAgICAgICAgICBSRUFMIE5PVCBOVUxMIENIRUNLIChwNTAgQkVUV0VFTiAwIEFORCAxKSxcbiAgICBQUklNQVJZIEtFWSAoZ3J1cHBlX2lkLCBkaW1lbnNpb25faWQpXG4pO1xuXCJcIlwiKVxuXG5ueS5leGVjdXRlKFwiSU5TRVJUIElOVE8gYnJhbmNoZXIgVkFMVUVTICgzLCAnSGFuZGVsJylcIilcbm55LmV4ZWN1dGUoXCJJTlNFUlQgSU5UTyBncnVwcGVyIFZBTFVFUyAoMSwgMywgMjAyMilcIilcbm55LmV4ZWN1dGUoXCJJTlNFUlQgSU5UTyBmb3JkZWxpbmdlciBWQUxVRVMgKDEsIDEsIDAuNDU0KVwiKVxuXG5wcmludChwZC5yZWFkX3NxbF9xdWVyeShcIlNFTEVDVCAqIEZST00gZm9yZGVsaW5nZXJcIiwgbnkpKSJ9
-</script>
-</div>
-</div>
-
-<aside><div>
-<p><code>PRIMARY KEY</code> er rækkens unikke id. <code>REFERENCES</code> er en <strong>fremmednøgle</strong>: den skal pege på en række, der findes. <code>CHECK</code> er en regel, databasen håndhæver. <code>UNIQUE</code> betyder, at samme værdi kun må stå én gang.</p>
-</div></aside></section>
-<section id="databasen-siger-fra" class="slide level2">
-<h2>Databasen siger fra</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-8" class="exercise-cell">
-
-</div>
-<script type="pyodide-8-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImZvcnNvZWcgPSBbXG4gICAgKFwiZW4gYW5kZWwgb3ZlciAxXCIsICAgICAgICAgICAgIFwiSU5TRVJUIElOVE8gZm9yZGVsaW5nZXIgVkFMVUVTICgxLCAyLCAxLjQpXCIpLFxuICAgIChcImVuIGJyYW5jaGUsIGRlciBpa2tlIGZpbmRlc1wiLCBcIklOU0VSVCBJTlRPIGdydXBwZXIgVkFMVUVTICgyLCA5OSwgMjAyMilcIiksXG4gICAgKFwiZXQgw6VyLCB2aSBpa2tlIGhhciB0YWwgZm9yXCIsICBcIklOU0VSVCBJTlRPIGdydXBwZXIgVkFMVUVTICgzLCAzLCAyMDE3KVwiKSxcbiAgICAoXCJIYW5kZWwgw6luIGdhbmcgdGlsXCIsICAgICAgICAgIFwiSU5TRVJUIElOVE8gYnJhbmNoZXIgVkFMVUVTICg0LCAnSGFuZGVsJylcIiksXG5dXG5cbmZvciBodmFkLCBrb21tYW5kbyBpbiBmb3Jzb2VnOlxuICAgIHRyeTpcbiAgICAgICAgbnkuZXhlY3V0ZShrb21tYW5kbylcbiAgICAgICAgcHJpbnQoZlwie2h2YWQ6PDI4fSDihpIgZ2VtdFwiKVxuICAgIGV4Y2VwdCBzcWxpdGUzLkludGVncml0eUVycm9yIGFzIGZlamw6XG4gICAgICAgIHByaW50KGZcIntodmFkOjwyOH0g4oaSIGFmdmlzdDoge2Zlamx9XCIpIn0=
-</script>
-</div>
-</div>
-
-<aside><div>
-<p>Fire ugyldige rækker, fire afvisninger. Det er <code>UgyldigArbejdsplads</code> fra lektion 5 igen, bare i databasen i stedet for i klassen. <strong>Reglerne bor ét sted, og ingen kan komme uden om dem.</strong></p>
-</div></aside></section>
-<section id="sqlite-fælden" class="slide level2">
-<h2>SQLite-fælden</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-9" class="exercise-cell">
-
-</div>
-<script type="pyodide-9-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InVkZW4gPSBzcWxpdGUzLmNvbm5lY3QoXCI6bWVtb3J5OlwiKSAgICAgICMgaGVyIGVyIFBSQUdNQSBmb3JlaWduX2tleXMgSUtLRSBzbMOlZXQgdGlsXG5cbnVkZW4uZXhlY3V0ZXNjcmlwdChcIlwiXCJcbkNSRUFURSBUQUJMRSBicmFuY2hlciAoYnJhbmNoZV9pZCBJTlRFR0VSIFBSSU1BUlkgS0VZLCBicmFuY2hlIFRFWFQgTk9UIE5VTEwpO1xuQ1JFQVRFIFRBQkxFIGdydXBwZXIgIChncnVwcGVfaWQgSU5URUdFUiBQUklNQVJZIEtFWSxcbiAgICAgICAgICAgICAgICAgICAgICAgYnJhbmNoZV9pZCBJTlRFR0VSIE5PVCBOVUxMIFJFRkVSRU5DRVMgYnJhbmNoZXIoYnJhbmNoZV9pZCkpO1xuXCJcIlwiKVxuXG51ZGVuLmV4ZWN1dGUoXCJJTlNFUlQgSU5UTyBncnVwcGVyIFZBTFVFUyAoMSwgOTkpXCIpXG5wcmludChwZC5yZWFkX3NxbF9xdWVyeShcIlNFTEVDVCAqIEZST00gZ3J1cHBlclwiLCB1ZGVuKSlcbnByaW50KFwiR2VtdCDigJQgc2Vsdm9tIGJyYW5jaGUgOTkgaWtrZSBmaW5kZXMuXCIpIn0=
-</script>
-</div>
-</div>
-
-<aside><div>
-<p>I SQLite er fremmednøgler <strong>slået fra</strong>, medmindre man skriver <code>PRAGMA foreign_keys = ON</code> hver gang, man åbner databasen. Det er en af de ting, der er værd at vide, før man har brug for det.</p>
-</div></aside></section></section>
-<section>
-<section id="apier" class="title-slide slide level1 center">
-<h1>API’er</h1>
-
-</section>
-<section id="api" class="slide level2">
-<h2>API</h2>
-<p><strong>Application Programming Interface</strong> er en <em>kontrakt</em>, der bestemmer, hvordan to programmer taler sammen.</p>
-<ul>
-<li class="fragment"><p><strong>Gæsten</strong> (klienten) ved ikke, hvordan køkkenet virker</p></li>
-<li class="fragment"><p><strong>Menuen</strong> (dokumentationen) viser, hvad man kan bestille</p></li>
-<li class="fragment"><p><strong>Tjeneren</strong> (API’et) tager imod bestillingen og kommer tilbage med maden</p></li>
-<li class="fragment"><p><strong>Køkkenet</strong> (databasen) laver maden, uden at gæsten ser det</p></li>
-</ul>
-<p><br></p>
-<div class="fragment">
-<p>Det er <strong>grænsefladen</strong> fra lektion 4, bare mellem to programmer i stedet for mellem to funktioner. Køkkenet kan bygges om, uden at menuen ændrer sig.</p>
-</div>
-</section>
-<section id="rest" class="slide level2 scrollable">
-<h2>REST</h2>
-<p>Den mest udbredte måde at bygge API’er til nettet på. Den bygger på HTTP, som er det samme, jeres browser bruger.</p>
-<ol type="1">
-<li class="fragment"><p><strong>Alt er ressourcer</strong> med en adresse: <code>/api/brancher</code>, <code>/api/brancher/Handel</code></p></li>
-<li class="fragment"><p><strong>HTTP-metoder</strong> siger, hvad man vil gøre med dem</p></li>
-<li class="fragment"><p><strong>Hver forespørgsel står alene.</strong> Serveren husker ikke, hvad du spurgte om sidst</p></li>
-<li class="fragment"><p><strong>Svaret er typisk JSON</strong> og JSON ligner en Python-ordbog fra kapitel 10</p></li>
-</ol>
-</section>
-<section id="http-metoderne" class="slide level2">
-<h2>HTTP-metoderne</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Metode</th>
-<th>Formål</th>
-<th>I SQL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>GET</code></td>
-<td>Hent</td>
-<td><code>SELECT</code></td>
-</tr>
-<tr class="even">
-<td><code>POST</code></td>
-<td>Opret</td>
-<td><code>INSERT</code></td>
-</tr>
-<tr class="odd">
-<td><code>PUT</code></td>
-<td>Erstat det hele</td>
-<td><code>UPDATE</code></td>
-</tr>
-<tr class="even">
-<td><code>PATCH</code></td>
-<td>Ret dele</td>
-<td><code>UPDATE</code></td>
-</tr>
-<tr class="odd">
-<td><code>DELETE</code></td>
-<td>Slet</td>
-<td><code>DELETE</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="et-api-til-barometerets-referencetal" class="slide level2">
-<h2>Et API til barometerets referencetal</h2>
-<pre><code>GET  /api/brancher                    alle brancher
-GET  /api/brancher/Handel             medianerne for Handel i 2022
-GET  /api/regioner                    alle regioner
-GET  /api/regioner/Nordjylland        medianerne for Nordjylland
-GET  /api/grupper?branche=Handel&amp;aar=2012
-                                      grupperne for Handel i 2012</code></pre>
-</section>
-<section id="svaret-er-json" class="slide level2">
-<h2>Svaret er JSON</h2>
-<pre><code>GET /api/brancher/Handel
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "branche": "Handel",
-  "aar": 2022,
-  "medianer": {
-    "kvinder": 0.454,
-    "seniorer": 0.137,
-    "indvandrere": 0.126
-  }
-}</code></pre>
-
-<aside><div>
-<p>Krøllede parenteser, nøgler og værdier, det er en ordbog i Python. JSON er den måde, ordbøger “rejser” over nettet på.</p>
-</div></aside></section>
-<section id="statuskoder" class="slide level2">
-<h2>Statuskoder</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Kode</th>
-<th>Betydning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>200</strong></td>
-<td>OK</td>
-</tr>
-<tr class="even">
-<td><strong>201</strong></td>
-<td>Oprettet</td>
-</tr>
-<tr class="odd">
-<td><strong>400</strong></td>
-<td>Ugyldig forespørgsel</td>
-</tr>
-<tr class="even">
-<td><strong>404</strong></td>
-<td>Findes ikke</td>
-</tr>
-<tr class="odd">
-<td><strong>405</strong></td>
-<td>Metoden er ikke tilladt</td>
-</tr>
-<tr class="even">
-<td><strong>500</strong></td>
-<td>Fejl på serveren</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="et-lille-api-i-python" class="slide level2">
-<h2>Et lille API i Python</h2>
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-10" class="exercise-cell">
-
-</div>
-<script type="pyodide-10-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6ImltcG9ydCBqc29uXG5cbmRlZiBhcGkobWV0b2RlLCBzdGkpOlxuICAgIFwiXCJcIkV0IGxpbGxlIEFQSS4gS2xpZW50ZW4gc2VuZGVyIGVuIG1ldG9kZSBvZyBlbiBhZHJlc3NlOyBBUEknZXQgc3DDuHJnZXIgZGF0YWJhc2VuLlwiXCJcIlxuICAgIGlmIG1ldG9kZSAhPSBcIkdFVFwiOlxuICAgICAgICByZXR1cm4gNDA1LCB7XCJmZWpsXCI6IFwiQmFyb21ldGVyZXQga2FuIGt1biBsw6ZzZXNcIn1cblxuICAgIGRlbGUgPSBzdGkuc3RyaXAoXCIvXCIpLnNwbGl0KFwiL1wiKSAgICAgICAgIyBcIi9hcGkvYnJhbmNoZXIvSGFuZGVsXCIg4oaSIFtcImFwaVwiLCBcImJyYW5jaGVyXCIsIFwiSGFuZGVsXCJdXG5cbiAgICBpZiBkZWxlID09IFtcImFwaVwiLCBcImJyYW5jaGVyXCJdOlxuICAgICAgICBzdmFyID0gc3FsKFwiU0VMRUNUIGJyYW5jaGUgRlJPTSBicmFuY2hlciBXSEVSRSBicmFuY2hlICE9ICdBbGxlJ1wiKVxuICAgICAgICByZXR1cm4gMjAwLCB7XCJicmFuY2hlclwiOiBsaXN0KHN2YXJbXCJicmFuY2hlXCJdKX1cblxuICAgIGlmIGxlbihkZWxlKSA9PSAzIGFuZCBkZWxlWzoyXSA9PSBbXCJhcGlcIiwgXCJicmFuY2hlclwiXTpcbiAgICAgICAgc3ZhciA9IHBkLnJlYWRfc3FsX3F1ZXJ5KFwiXCJcIlxuICAgICAgICAgICAgU0VMRUNUIGRpbWVuc2lvbmVyLmRpbWVuc2lvbiwgZm9yZGVsaW5nZXIucDUwXG4gICAgICAgICAgICBGUk9NIGZvcmRlbGluZ2VyXG4gICAgICAgICAgICBKT0lOIGdydXBwZXIgICAgIE9OIGZvcmRlbGluZ2VyLmdydXBwZV9pZCAgICA9IGdydXBwZXIuZ3J1cHBlX2lkXG4gICAgICAgICAgICBKT0lOIGJyYW5jaGVyICAgIE9OIGdydXBwZXIuYnJhbmNoZV9pZCAgICAgICA9IGJyYW5jaGVyLmJyYW5jaGVfaWRcbiAgICAgICAgICAgIEpPSU4gZGltZW5zaW9uZXIgT04gZm9yZGVsaW5nZXIuZGltZW5zaW9uX2lkID0gZGltZW5zaW9uZXIuZGltZW5zaW9uX2lkXG4gICAgICAgICAgICBXSEVSRSBicmFuY2hlci5icmFuY2hlID0gPyBBTkQgZ3J1cHBlci5hYXIgPSAyMDIyIEFORCBncnVwcGVyLnJlZ2lvbl9pZCA9IDBcbiAgICAgICAgXCJcIlwiLCBkYiwgcGFyYW1zPShkZWxlWzJdLCkpXG4gICAgICAgIGlmIGxlbihzdmFyKSA9PSAwOlxuICAgICAgICAgICAgcmV0dXJuIDQwNCwge1wiZmVqbFwiOiBmXCJCcmFuY2hlbiBmaW5kZXMgaWtrZToge2RlbGVbMl19XCJ9XG4gICAgICAgIHJldHVybiAyMDAsIHtcImJyYW5jaGVcIjogZGVsZVsyXSwgXCJhYXJcIjogMjAyMixcbiAgICAgICAgICAgICAgICAgICAgIFwibWVkaWFuZXJcIjogZGljdCh6aXAoc3ZhcltcImRpbWVuc2lvblwiXSwgc3ZhcltcInA1MFwiXSkpfVxuXG4gICAgcmV0dXJuIDQwNCwge1wiZmVqbFwiOiBcIlVrZW5kdCBhZHJlc3NlXCJ9XG5cblxuZm9yIG1ldG9kZSwgc3RpIGluIFsoXCJHRVRcIiwgXCIvYXBpL2JyYW5jaGVyXCIpLFxuICAgICAgICAgICAgICAgICAgICAoXCJHRVRcIiwgXCIvYXBpL2JyYW5jaGVyL0hhbmRlbFwiKSxcbiAgICAgICAgICAgICAgICAgICAgKFwiR0VUXCIsIFwiL2FwaS9icmFuY2hlci9GaXNrZXJpXCIpLFxuICAgICAgICAgICAgICAgICAgICAoXCJERUxFVEVcIiwgXCIvYXBpL2JyYW5jaGVyL0hhbmRlbFwiKV06XG4gICAgc3RhdHVzLCBzdmFyID0gYXBpKG1ldG9kZSwgc3RpKVxuICAgIHByaW50KG1ldG9kZSwgc3RpLCBcIuKGklwiLCBzdGF0dXMpXG4gICAgcHJpbnQoXCIgICBcIiwganNvbi5kdW1wcyhzdmFyLCBlbnN1cmVfYXNjaWk9RmFsc2UpKSJ9
-</script>
-</div>
-</div>
-
-<aside><div>
-<p>Hele kæden i én celle: klienten sender en metode og en adresse, API’et oversætter til SQL, databasen svarer, og API’et pakker svaret som JSON med en statuskode.</p>
-</div></aside></section>
-<section id="det-hele-system" class="slide level2">
-<h2>Det hele system</h2>
-<pre><code>┌──────────────────────────────────────────┐
-│  KLIENT                                  │
-│  browser, app, eller et andet program    │
-└───────────────────┬──────────────────────┘
-                    │  HTTP-forespørgsel → JSON-svar
-┌───────────────────▼──────────────────────┐
-│  API                                     │
-│  tjekker forespørgslen, laver svaret     │
-└───────────────────┬──────────────────────┘
-                    │  SQL
-┌───────────────────▼──────────────────────┐
-│  DATABASE                                │
-│  gemmer data, håndhæver regler,          │
-│  gemmer alt eller intet                  │
-└──────────────────────────────────────────┘</code></pre>
-<div class="fragment">
-<p>Lagene fra lektion 4 igen. Hvert lag kender kun grænsefladen til laget nedenunder.</p>
-</div>
 </section></section>
 <section>
 <section id="workshop" class="title-slide slide level1 center">
 <h1>Workshop</h1>
 
 </section>
-<section id="øvelse-1-sql-i-browseren" class="slide level2 scrollable">
-<h2>Øvelse 1: SQL i browseren</h2>
-<p><span class="timer" data-time="1200"></span></p>
-<p>Åbn <a href="https://www.sqlitetutorial.net/tryit/query/sqlite-select/#invoices">sqlitetutorial.net’s øvelsesside</a>. Tabellen <code>invoices</code> er fakturaer fra en musikbutik.</p>
-<ol type="1">
-<li><p>Vis alle kolonner og rækker fra <code>invoices</code>.</p></li>
-<li><p>Vis kun <code>BillingCountry</code>, <code>CustomerId</code> og <code>Total</code>.</p></li>
-<li><p>Hvad er den samlede omsætning pr. land?</p></li>
-<li><p>Hvor mange fakturaer blev udstedt i 2010?</p></li>
-<li><p>Hvilken kunde har brugt flest penge i alt?</p></li>
-<li><p>Hvilke lande har et gennemsnitligt fakturabeløb over 10?</p></li>
-</ol>
-<details>
-<summary>
-Løsningsforslag
-</summary>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href=""></a><span class="co">-- 1</span></span>
-<span id="cb11-2"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> invoices;</span>
-<span id="cb11-3"><a href=""></a></span>
-<span id="cb11-4"><a href=""></a><span class="co">-- 2</span></span>
-<span id="cb11-5"><a href=""></a><span class="kw">SELECT</span> BillingCountry, CustomerId, Total <span class="kw">FROM</span> invoices;</span>
-<span id="cb11-6"><a href=""></a></span>
-<span id="cb11-7"><a href=""></a><span class="co">-- 3</span></span>
-<span id="cb11-8"><a href=""></a><span class="kw">SELECT</span> BillingCountry, <span class="fu">SUM</span>(Total) <span class="kw">AS</span> SamletOmsaetning</span>
-<span id="cb11-9"><a href=""></a><span class="kw">FROM</span> invoices</span>
-<span id="cb11-10"><a href=""></a><span class="kw">GROUP</span> <span class="kw">BY</span> BillingCountry</span>
-<span id="cb11-11"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> SamletOmsaetning <span class="kw">DESC</span>;</span>
-<span id="cb11-12"><a href=""></a></span>
-<span id="cb11-13"><a href=""></a><span class="co">-- 4</span></span>
-<span id="cb11-14"><a href=""></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Antal2010</span>
-<span id="cb11-15"><a href=""></a><span class="kw">FROM</span> invoices</span>
-<span id="cb11-16"><a href=""></a><span class="kw">WHERE</span> strftime(<span class="st">'%Y'</span>, InvoiceDate) <span class="op">=</span> <span class="st">'2010'</span>;</span>
-<span id="cb11-17"><a href=""></a></span>
-<span id="cb11-18"><a href=""></a><span class="co">-- 5</span></span>
-<span id="cb11-19"><a href=""></a><span class="kw">SELECT</span> CustomerId, <span class="fu">SUM</span>(Total) <span class="kw">AS</span> SamletForbrug</span>
-<span id="cb11-20"><a href=""></a><span class="kw">FROM</span> invoices</span>
-<span id="cb11-21"><a href=""></a><span class="kw">GROUP</span> <span class="kw">BY</span> CustomerId</span>
-<span id="cb11-22"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> SamletForbrug <span class="kw">DESC</span></span>
-<span id="cb11-23"><a href=""></a><span class="kw">LIMIT</span> <span class="dv">1</span>;</span>
-<span id="cb11-24"><a href=""></a></span>
-<span id="cb11-25"><a href=""></a><span class="co">-- 6</span></span>
-<span id="cb11-26"><a href=""></a><span class="kw">SELECT</span> BillingCountry, <span class="fu">AVG</span>(Total) <span class="kw">AS</span> Gennemsnit</span>
-<span id="cb11-27"><a href=""></a><span class="kw">FROM</span> invoices</span>
-<span id="cb11-28"><a href=""></a><span class="kw">GROUP</span> <span class="kw">BY</span> BillingCountry</span>
-<span id="cb11-29"><a href=""></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(Total) <span class="op">&gt;</span> <span class="dv">10</span></span>
-<span id="cb11-30"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> Gennemsnit <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>HAVING</code> er <code>WHERE</code> for grupper: <code>WHERE</code> vælger rækker, før de bliver grupperet; <code>HAVING</code> vælger grupper, efter de er regnet ud.</p>
-</details>
+<section id="før-i-starter" class="slide level2">
+<h2>Før I starter</h2>
+<p><span class="timer" data-time="600"></span></p>
+<p><strong>Sync fork</strong> og <code>git pull</code>. Så får I <code>_quarto.yml</code>, <code>barometer.qmd</code>, <code>opslag.qmd</code> og <code>om.qmd</code>, og en <code>index.qmd</code> med kommentarer, I skal skrive om.</p>
+<ul>
+<li class="fragment"><p><strong>Positron</strong> har Quarto indbygget. <strong>VS Code</strong> skal have Quarto installeret fra quarto.org og udvidelsen <em>Quarto</em>.</p></li>
+<li class="fragment"><p>Quarto skal kunne køre Python. Tjek det i terminalen:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href=""></a><span class="ex">quarto</span> check jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mangler Jupyter, så: <code>python -m pip install jupyter</code></p></li>
+</ul>
 </section>
-<section id="øvelse-2-barometeret-i-sql" class="slide level2 scrollable">
-<h2>Øvelse 2: Barometeret i SQL</h2>
+<section id="øvelse-1-markdown-på-ti-minutter" class="slide level2">
+<h2>Øvelse 1: Markdown på ti minutter</h2>
+<p><span class="timer" data-time="600"></span></p>
+<p>Lav en fil, <code>kladde.md</code>, og genskab teksten fra arket — overskrifter, fed og kursiv, en liste, et link og en tabel.</p>
+<p>Åbn forhåndsvisningen ved siden af med <code>Ctrl + Shift + V</code>, og ret, til de ser ens ud.</p>
+</section>
+<section id="øvelse-2-forsiden" class="slide level2">
+<h2>Øvelse 2: Forsiden</h2>
 <p><span class="timer" data-time="1200"></span></p>
-<p>Skriv jeres egne forespørgsler.</p>
-<div class="kode-split">
-<div class="cell" data-autorun="false">
-<div>
-<div id="pyodide-11" class="exercise-cell">
-
+<p>Åbn <code>index.qmd</code>, og skriv forsiden. Kommentarerne siger, hvad der skal stå hvor.</p>
+<ul>
+<li class="fragment"><p><strong>Hvad barometeret kan</strong>: to eller tre sætninger, med det vigtigste ord i <strong>fed</strong></p></li>
+<li class="fragment"><p><strong>Tre sider</strong>: en liste med et link til hver</p></li>
+<li class="fragment"><p><strong>Det, barometeret ikke gør</strong>: de vigtigste beslutninger fra <code>KOEREPLAN.md</code></p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Kør <code>quarto preview</code> i terminalen. Siden opdaterer sig selv, hver gang I gemmer.</p>
 </div>
-<script type="pyodide-11-contents">
-eyJhdHRyIjp7ImF1dG9ydW4iOmZhbHNlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlfSwiY29kZSI6InByaW50KHNxbChcIlwiXCJcblNFTEVDVCAqXG5GUk9NIGJyYW5jaGVyXG5cIlwiXCIpKSJ9
-</script>
-</div>
-</div>
-</div>
+</section>
+<section id="øvelse-3-opslag-og-barometer" class="slide level2">
+<h2>Øvelse 3: Opslag og Barometer</h2>
+<p><span class="timer" data-time="1200"></span></p>
+<p>Koden står der allerede. Mangler der noget, er det <strong>teksten</strong>.</p>
+<ul>
+<li class="fragment"><p><code>opslag.qmd</code>: forklar, hvordan man læser figuren — hvad er søjlen, hvad er prikken? Og hvad er en median, og hvad er den ikke?</p></li>
+<li class="fragment"><p><code>barometer.qmd</code>: forklar figuren med jeres egne ord — det lyse bånd, det mørke bånd, stregen og trekanten.</p></li>
+</ul>
+</section>
+<section id="øvelse-4-navigationen-og-udseendet" class="slide level2 scrollable">
+<h2>Øvelse 4: Navigationen og udseendet</h2>
+<p><span class="timer" data-time="900"></span></p>
+<p>Åbn <code>_quarto.yml</code>.</p>
 <ol type="1">
-<li><p>Hvilke tre brancher havde den højeste median for seniorer i 2022?</p></li>
-<li><p>Hvilken region har den laveste median for indvandrerbaggrund i 2022? <em>Tip: regionerne står i grupper med <code>branche_id = 0</code>.</em></p></li>
-<li><p>Hvor meget steg medianen for kvinder i Handel fra 2012 til 2022?</p></li>
-<li><p>Hvor mange arbejdssteder er der i alt i de otte brancher, pr. år? Passer det med rapportens 7.225?</p></li>
+<li class="fragment"><p>Byt om på rækkefølgen af to sider i menuen. Gem, og se det skifte.</p></li>
+<li class="fragment"><p>Skift temaet fra <code>cosmo</code> til et af Quartos andre: fx <code>flatly</code>, <code>litera</code> eller <code>minty</code>.</p></li>
+<li class="fragment"><p>Ret teksten i bunden af siden, så den nævner jeres gruppe.</p></li>
+<li class="fragment"><p>Lav en fejl med vilje: fjern mellemrummet efter et kolon. Hvad siger Quarto? Ret den igen.</p></li>
 </ol>
 </section>
-<section id="øvelse-2-løsningsforslag" class="slide level2">
-<h2>Øvelse 2: løsningsforslag</h2>
-<details>
-<summary>
-Løsningsforslag
-</summary>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href=""></a><span class="co">-- 1 Offentlig administration (0,307), Transport (0,260), Undervisning (0,250)</span></span>
-<span id="cb12-2"><a href=""></a><span class="kw">SELECT</span> brancher.branche, fordelinger.p50</span>
-<span id="cb12-3"><a href=""></a><span class="kw">FROM</span> fordelinger</span>
-<span id="cb12-4"><a href=""></a><span class="kw">JOIN</span> grupper  <span class="kw">ON</span> fordelinger.gruppe_id <span class="op">=</span> grupper.gruppe_id</span>
-<span id="cb12-5"><a href=""></a><span class="kw">JOIN</span> brancher <span class="kw">ON</span> grupper.branche_id   <span class="op">=</span> brancher.branche_id</span>
-<span id="cb12-6"><a href=""></a><span class="kw">WHERE</span> fordelinger.dimension_id <span class="op">=</span> <span class="dv">2</span> <span class="kw">AND</span> grupper.aar <span class="op">=</span> <span class="dv">2022</span></span>
-<span id="cb12-7"><a href=""></a>  <span class="kw">AND</span> grupper.region_id <span class="op">=</span> <span class="dv">0</span> <span class="kw">AND</span> brancher.branche <span class="op">!=</span> <span class="st">'Alle'</span></span>
-<span id="cb12-8"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> fordelinger.p50 <span class="kw">DESC</span></span>
-<span id="cb12-9"><a href=""></a><span class="kw">LIMIT</span> <span class="dv">3</span>;</span>
-<span id="cb12-10"><a href=""></a></span>
-<span id="cb12-11"><a href=""></a><span class="co">-- 2 Nordjylland (0,096)</span></span>
-<span id="cb12-12"><a href=""></a><span class="kw">SELECT</span> regioner.region, fordelinger.p50</span>
-<span id="cb12-13"><a href=""></a><span class="kw">FROM</span> fordelinger</span>
-<span id="cb12-14"><a href=""></a><span class="kw">JOIN</span> grupper  <span class="kw">ON</span> fordelinger.gruppe_id <span class="op">=</span> grupper.gruppe_id</span>
-<span id="cb12-15"><a href=""></a><span class="kw">JOIN</span> regioner <span class="kw">ON</span> grupper.region_id    <span class="op">=</span> regioner.region_id</span>
-<span id="cb12-16"><a href=""></a><span class="kw">WHERE</span> fordelinger.dimension_id <span class="op">=</span> <span class="dv">3</span> <span class="kw">AND</span> grupper.aar <span class="op">=</span> <span class="dv">2022</span></span>
-<span id="cb12-17"><a href=""></a>  <span class="kw">AND</span> grupper.branche_id <span class="op">=</span> <span class="dv">0</span> <span class="kw">AND</span> regioner.region <span class="op">!=</span> <span class="st">'Alle'</span></span>
-<span id="cb12-18"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> fordelinger.p50</span>
-<span id="cb12-19"><a href=""></a><span class="kw">LIMIT</span> <span class="dv">1</span>;</span>
-<span id="cb12-20"><a href=""></a></span>
-<span id="cb12-21"><a href=""></a><span class="co">-- 3 fra 0,409 til 0,454: 4,5 procentpoint</span></span>
-<span id="cb12-22"><a href=""></a><span class="kw">SELECT</span> grupper.aar, fordelinger.p50</span>
-<span id="cb12-23"><a href=""></a><span class="kw">FROM</span> fordelinger</span>
-<span id="cb12-24"><a href=""></a><span class="kw">JOIN</span> grupper  <span class="kw">ON</span> fordelinger.gruppe_id <span class="op">=</span> grupper.gruppe_id</span>
-<span id="cb12-25"><a href=""></a><span class="kw">JOIN</span> brancher <span class="kw">ON</span> grupper.branche_id   <span class="op">=</span> brancher.branche_id</span>
-<span id="cb12-26"><a href=""></a><span class="kw">WHERE</span> brancher.branche <span class="op">=</span> <span class="st">'Handel'</span> <span class="kw">AND</span> fordelinger.dimension_id <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb12-27"><a href=""></a>  <span class="kw">AND</span> grupper.region_id <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-28"><a href=""></a><span class="kw">ORDER</span> <span class="kw">BY</span> grupper.aar;</span>
-<span id="cb12-29"><a href=""></a></span>
-<span id="cb12-30"><a href=""></a><span class="co">-- 4 8.694 i 2012 og 9.518 i 2022</span></span>
-<span id="cb12-31"><a href=""></a><span class="kw">SELECT</span> aar, <span class="fu">SUM</span>(antal_arbejdssteder) <span class="kw">AS</span> i_alt</span>
-<span id="cb12-32"><a href=""></a><span class="kw">FROM</span> grupper</span>
-<span id="cb12-33"><a href=""></a><span class="kw">WHERE</span> branche_id <span class="op">!=</span> <span class="dv">0</span> <span class="kw">AND</span> region_id <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-34"><a href=""></a><span class="kw">GROUP</span> <span class="kw">BY</span> aar;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Nr. 4 passer ikke med rapportens 7.225 — og det skal den heller ikke. Tallene er syntetiske, og antallet af arbejdssteder i hver gruppe er trukket tilfældigt. Det er en god påmindelse om at tjekke, om tallene hænger sammen, før man stoler på dem.</p>
-</details>
+<section id="når-det-driller" class="slide level2">
+<h2>Når det driller</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Det, I ser</th>
+<th>Det betyder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>quarto: command not found</code></td>
+<td>Quarto er ikke installeret. Positron har det indbygget; ellers quarto.org</td>
+</tr>
+<tr class="even">
+<td><code>Jupyter is not available</code></td>
+<td><code>python -m pip install jupyter</code>, og så <code>quarto check jupyter</code></td>
+</tr>
+<tr class="odd">
+<td><code>No module named 'app'</code></td>
+<td>Quarto kører ikke fra roden af repositoriet</td>
+</tr>
+<tr class="even">
+<td><code>YAML parse exception</code></td>
+<td>Indrykning, et manglende mellemrum efter kolon, eller <code>---</code> med tekst lige under</td>
+</tr>
+<tr class="odd">
+<td>Om-siden er tom</td>
+<td><code>app/om.md</code> mangler, eller stien i <code>include</code> er forkert</td>
+</tr>
+<tr class="even">
+<td><code>_site/</code> står i <code>git status</code></td>
+<td><code>.gitignore</code> er blevet ændret. Den skal stå der</td>
+</tr>
+</tbody>
+</table>
 
 <script type="pyodide-data">
-eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwicGFuZGFzIl19fQ==
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
 </script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfMSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMS1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjFcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIxXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">

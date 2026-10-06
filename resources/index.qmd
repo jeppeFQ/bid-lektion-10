@@ -1,0 +1,26 @@
+---
+title: "Diversitetsbarometeret"
+subtitle: "Hvor mangfoldig er din arbejdsplads — sammenlignet med dem, der ligner den?"
+---
+
+<!-- ØVELSE 2 · Skriv forsiden i Markdown. Slet kommentarerne, når I er færdige.
+     Alt mellem de her tegn kan ikke ses på siden. -->
+
+## Hvad barometeret kan
+
+<!-- To eller tre sætninger. Hvem er det til, og hvad kan de bruge det til?
+     Brug **fed** til det vigtigste ord. -->
+
+## Tre sider
+
+<!-- En liste med et punkt pr. side, og et link til hver.
+     Et link skrives sådan:  [Opslag](opslag.qmd)  -->
+
+## Det, barometeret ikke gør
+
+<!-- De vigtigste af de fem beslutninger fra KOEREPLAN.md, som en liste.
+     Henvis til Om-siden for resten. -->
+
+::: {.callout-note}
+Tallene er **syntetiske**. Barometeret siger endnu intet om virkelige arbejdspladser.
+:::

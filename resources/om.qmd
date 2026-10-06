@@ -1,0 +1,6 @@
+---
+# Ingen title her: overskriften kommer fra app/om.md, så den ikke står der to gange.
+pagetitle: "Om barometeret"
+---
+
+{{< include app/om.md >}}

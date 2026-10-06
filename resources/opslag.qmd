@@ -1,0 +1,52 @@
+---
+title: "Opslag"
+subtitle: "Medianen i hver branche — 2012 og 2022"
+---
+
+```{python}
+# Den samme kode, som appen bruger. Hjemmesiden er bare endnu et lag ovenpå.
+from app.barometer import Referencetal
+from app.barometer.opslag import brancher
+from app.barometer.figur import tegn_opslag
+
+referencetal = Referencetal()
+```
+
+<!-- ØVELSE 3 · Skriv et par sætninger her: hvad viser siden, og hvordan
+     skal man læse figuren? Hvad er søjlen, og hvad er prikken? -->
+
+::: {.panel-tabset}
+
+## Kvinder
+
+```{python}
+figur = tegn_opslag(brancher(referencetal, "kvinder"))
+```
+
+```{python}
+brancher(referencetal, "kvinder")
+```
+
+## Seniorer
+
+```{python}
+figur = tegn_opslag(brancher(referencetal, "seniorer"))
+```
+
+```{python}
+brancher(referencetal, "seniorer")
+```
+
+## Indvandrerbaggrund
+
+```{python}
+figur = tegn_opslag(brancher(referencetal, "indvandrere"))
+```
+
+```{python}
+brancher(referencetal, "indvandrere")
+```
+
+:::
+
+<!-- Skriv til sidst én sætning om, hvad medianen er, og hvad den ikke er. -->
